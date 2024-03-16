@@ -6,90 +6,95 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/03/13 17:47:35 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/03/16 22:01:53 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int  check_last_row(char *line)
+
+static int  is_rectang(char **map)
 {
     int i;
 
     i = 0;
-    while (line[i])
+    if(!map)
+        return (0);
+    while (map[i] != '\0')
     {
-        if (line[i] != '1')
+        if (ft_strlen(map[i]) != ft_strlen(map[0]))
+            return (0)
+        i++;
+    }
+    return (1);
+}
+
+static int is_wall(char **map)
+{
+    int i;
+    int j;
+    int len;
+
+    i = 0;
+    j = 0;
+    while (map[i] != '\0')
+        i++;
+    while (map[0][j] != '\0' && map[i - 1][j] != '\0')
+    {
+        if (map[0][j] != '1' || map[i - 1][j] != '1')
+            return (0);
+        j++;
+    }
+    i = 1;
+    len = ft_strlen(map[i]);
+    while (map[i] != '\0')
+    {
+        if (map[i][0] != '1' || map[i][len - 1] != '1')
+            return (0);
+        i++;
+    }
+    return (1);
+}
+static int is_mapvalid(char **map)
+{
+    int i;
+    int j;
+
+    i = 0;
+    
+
+}
+static int verif_element(t_game *game)
+{
+    int i;
+    int j;
+
+    game->player = 0;
+    game->exit = 0;
+    game->collectible = 0;
+    i = 0;
+    while (game->map[i] != '\0')
+    {
+        while (game->map[i][j] != '\0')
         {
-            ft_printf("Error\n the last row do not contain only wall\n");
-            return (1);
+            j = 0;
+            if (game->map[i][j] == 'P')
+                game->player++;
+            else if (game->map[i][j] == 'E')
+                game->exit++;
+            else if (game->map[i][j] == 'C')
+                game->collectible++;
+            j++;
         }
         i++;
     }
+    if (game->player != 1 || game->exit == 0 || game->collectible == 0)
+        return (0);
+    return (1);
+}
+int map_checker(t_game *game)
+{
+    if ()
+        return (1);
     return (0);
 }
-static int check_wall(t_game *game, int linecount)
-{
-    int wall_lenght;
-    int i;
-
-    wall_lenght = 0;
-    while (game->map[0][wall_lenght + 1])
-    {
-        if (game->map[0][wall_lenght] != '1')
-            return (1);
-        wall_lenght++;
-    }
-    if (wall_lenght < 3)
-        return (1);
-    i = 0;
-    while (game->map[i + 1])
-    {
-        if (ft_strlen(game->map[i]) < game->colone || /
-        (game->map[i][wall_lenght] && 1 + i == linecount))
-            return (1);
-        if ((game->map[i][wall_lenght + 1]) || !(game->map[i][wall_lenght + 1]))
-            return (1);
-        if (game->map[i][])
-            return (1);
-    }
-}
-
-/*
-0 = emplacement vide
-
-1 = wall
-
-c = collectible
-
-E = exit
-
-P = position player
-
-seulement une seul sortie!
-
-
-Has to be rectangular
-
-Has to be surrounded by walls
-
-No empty lines anywhere
-
-Has to have a valid path to every coin and exit
-
-No other characters besides 1, 0, C, E, P
-
-Only one player and exit
-
-You have to handle the case if the coin is blocked by the exit
-
-Empty map case
-
-Invalid extension (only .ber allowed)
-
-Map does not exist
-
-No arguments or to many arguments
-
-Check every error case with valgrind (in case of uninitialised error use calloc) In progress
-*/
