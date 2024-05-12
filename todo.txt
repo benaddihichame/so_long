@@ -1,9 +1,0 @@
-map: 
-->verifier wall 
-->verifier rectangle
-->verifier lettre
-
-affichage:
--> test banal
--> chaque iamge image doit apparaitre 
--> 

@@ -1,31 +1,35 @@
-NAME := so_long
+OBJECTS = \
+	src/main.o \
 
-SRC := fonction/main.c fonction/testmap.c fonction/get_map.c
+LIBFT = lib/libft.a
 
-LIBFT_DIR = includes/libft
-FT_PRINTF_DIR = includes/ft_printf
-GET_NEXT_LINE_DIR = includes/mygnl
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -Iinclude -Imlx42/include/MLX42 -g
+LFLAGS = -Llib -lft -lmlx42 -ldl -lglfw
 
-OBJ := $(SRC:.c=.o)
+NAME = so_long
 
-CFLAGS := -g -Iincludes
-LDFLAGS := -Llib -lmlx42 -lftprintf -ldl -lglfw -pthread -lm
+all: $(NAME)
 
-.PHONY: all clean fclean re
+$(NAME): $(OBJECTS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME) $(LFLAGS) 
 
-%.o:		%.c
-			$(CC) $(CFLAGS) -c $< -o $@
+$(LIBFT):
+	$(MAKE) -C lib
 
-$(NAME):	$(OBJ)
-			$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
-
-all:		$(NAME)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-			$(RM) -f $(OBJ)
+	make clean -C lib
+	/bin/rm $(OBJECTS)
 
-fclean:		clean
-			$(RM) -f $(NAME)
+fclean: clean
+	make fclean -C lib
+	/bin/rm $(NAME)
 
-re:			fclean all
+re: fclean all
+	make fclean -C lib
+
+.PHONY: all clean fclean re
 
