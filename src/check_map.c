@@ -6,11 +6,11 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/12 20:01:20 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/12 21:38:07 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../include/so_long.h"
 
 // cette fonction permet de verifier si la map est un rectangle
 static int  is_rectang(char **map)
@@ -81,6 +81,16 @@ static int verif_element(t_game *game)
         i++;
     }
     if (game->player != 1 || game->exit == 0 || game->collectible == 0 || game->exit > 1)
+        return (0);
+    return (1);
+}
+int ultimate_check(char **argv, t_game *game)
+{
+    if (is_rectang(game->map) == 0)
+        return (0);
+    if (is_wall(game->map) == 0)
+        return (0);
+    if (verif_element(game) == 0)
         return (0);
     return (1);
 }

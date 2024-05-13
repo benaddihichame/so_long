@@ -5,6 +5,7 @@
         "mlx_int.h": "c",
         "libft.h": "c",
         "stdio.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "unistd.h": "c"
     }
 }

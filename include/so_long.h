@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2023/12/18 14:05:13 by maxborde         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:15:09 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 
 typedef struct s_texture
 {
-    void *sol;
+    struct mlx_texture *sol;
     void *pokeball;
     void *porte;
     void *arbre;
+    void *grass;
 }   t_texture;
 
 typedef struct s_mlxd
@@ -42,11 +43,7 @@ typedef struct s_game
     char    player;
     char    exit;
     char    collectible;
-    int     map_colone;
-    int     map_exit;
     int     vide;
-
-
 } t_game;
 
 typedef struct s_player
@@ -58,5 +55,6 @@ typedef struct s_player
 int is_valid(char *str);
 void get_map(char *file_name, t_game *game);
 size_t	my_strlen(char *s);
+int ultimate_check(char **argv, t_game *game);
 
 #endif

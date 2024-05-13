@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/17 19:08:05 by maxborde          #+#    #+#             */
-/*   Updated: 2023/12/18 14:04:02 by maxborde         ###   ########.fr       */
+/*   Created: 2024/05/12 21:49:57 by hbenaddi          #+#    #+#             */
+/*   Updated: 2024/05/13 15:31:57 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 int main()
 {
-    void *mlx;
+    mlx_t *mlx;
+    mlx_image_t *img;
 
-    mlx = mlx_init(900, 900, "so_long", true);
-    mlx_loop(mlx);
+    mlx = mlx_init(900, 900, "so_long", false);
+    if (!mlx)
+        return(0);
+   img = mlx_load_png("./image/oui.png");
+   mlx_draw_image(mlx, img, 0, 0);
+   mlx_loop(mlx);
     return(0);
 }

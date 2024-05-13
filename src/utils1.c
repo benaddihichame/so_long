@@ -6,11 +6,11 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:13:45 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/12 18:14:51 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/12 21:13:14 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 
 size_t	my_strlen(char *s)

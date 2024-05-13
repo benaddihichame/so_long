@@ -1,4 +1,4 @@
-#include "../so_long.h"
+#include "../include/so_long.h"
 
 // cette fonction permet de compter le nombre de ligne dans le fichier
 
