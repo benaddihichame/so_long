@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/13 11:15:09 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:52:57 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 
 typedef struct s_texture
 {
-    struct mlx_texture *sol;
-    void *pokeball;
-    void *porte;
-    void *arbre;
-    void *grass;
+    mlx_texture_t *sol;
+    mlx_texture_t *pokeball;
+    mlx_texture_t *porte;
+    mlx_texture_t *arbre;
+    mlx_texture_t *grass;
 }   t_texture;
 
 typedef struct s_mlxd
