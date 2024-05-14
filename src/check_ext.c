@@ -1,13 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_ext.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 13:54:15 by hbenaddi          #+#    #+#             */
+/*   Updated: 2024/05/14 13:59:37 by hbenaddi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-char *strchrmod(char *s, char* target)
+static int ft_strcmp(const char *s1, const char *s2) {
+    while (*s1 && (*s1 == *s2)) {
+        s1++;
+        s2++;
+    }
+    return *(const unsigned char *)s1 - *(const unsigned char *)s2;
+}
+
+static char *strchrmod(char *s, char* target)
 {
     int i;
 
     i = 0;
     while (s[i])
     {
-        if (strcmp(s + i, target) == 0)
+        if (ft_strcmp(s + i, target) == 0)
             return (s + i);
         i++;
     }
