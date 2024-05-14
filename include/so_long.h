@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/13 15:52:57 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:44:13 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef struct s_player
 
 int is_valid(char *str);
 void get_map(char *file_name, t_game *game);
-size_t	my_strlen(char *s);
 int ultimate_check(char **argv, t_game *game);
+int count_line(char *file_name);
+
 
 #endif

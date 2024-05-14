@@ -1,5 +1,6 @@
 OBJECTS = \
-	src/main.o \
+	src/main.c \
+	src/get_map.c
 
 LIBFT = lib/libft.a
 
@@ -22,11 +23,11 @@ $(LIBFT):
 
 clean:
 	make clean -C lib
-	/bin/rm $(OBJECTS)
+	rm $(OBJECTS)
 
 fclean: clean
 	make fclean -C lib
-	/bin/rm $(NAME)
+	rm $(NAME)
 
 re: fclean all
 	make fclean -C lib
