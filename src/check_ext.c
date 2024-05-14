@@ -6,11 +6,11 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:54:15 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 13:59:37 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:01:16 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 static int ft_strcmp(const char *s1, const char *s2) {
     while (*s1 && (*s1 == *s2)) {
@@ -39,7 +39,7 @@ int is_valid(char *str)
         return (1);
     else
     {
-        ft_printf("Error\n Your map is not a .ber !\n");
+        ft_printf("Error: Your map is not a .ber !\n");
         return (0);
     }
 }

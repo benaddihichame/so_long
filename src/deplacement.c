@@ -6,11 +6,11 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:56:35 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 12:59:56 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:21:36 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/so_long.h"
+#include "../include/so_long.h"
 
 void    moove(t_game *game)
 {
@@ -18,6 +18,5 @@ void    moove(t_game *game)
 
     game->x = 0;
     game->y = 0;
-    if (MLX_KEY_W)
-
+    if (mooving.player )
 }

@@ -1,15 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   affichage.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/12 18:13:45 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:18:04 by hbenaddi         ###   ########.fr       */
+/*   Created: 2024/05/14 15:47:18 by hbenaddi          #+#    #+#             */
+/*   Updated: 2024/05/14 16:51:22 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void loading_png(t_game *game)
+{
+    int i;
 
+    i = 0;
+    game->grass = mlx_load_png("./image/grass.png");
+    game->collectible = mlx_load_png("./image/pokeball.png");
+    game->arbre = mlx_load_png("./image/arbre.png");
+    game->ecto = mlx_load_png("./image/ecto.png");
+    game->door = mlx_load_png("./image/door.png");
+}

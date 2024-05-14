@@ -6,30 +6,34 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 13:32:19 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:59:40 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
+#include <string.h>
 // cette fonction permet de verifier si la map est un rectangle
-static int  is_rectang(char **map)
+int  is_rectang(char **map)
 {
     int i;
 
     i = 0;
     if(!map)
         return (0);
-    while (*map[i] != '\0')
+    while (map[i])
     {
-        if (ft_strlen(*map[i]) != ft_strlen(*map[0]))
+        if (strlen(map[i]) != strlen(map[0]))
+        {
+            printf("Error: la map n'est pas un rectangle\n");
             return (0);
+        }
         i++;
     }
     return (1);
 }
+
 // cette fonction permet de verifier si la map est entouré de mur
-static int is_wall(char **map)
+int is_wall(char **map)
 {
     int i;
     int j;
@@ -37,17 +41,17 @@ static int is_wall(char **map)
 
     i = 0;
     j = 0;
-    while (*map[i] != '\0')
+    while (map[0][i])
         i++;
-    while (map[0][j] != '\0' && map[i - 1][j] != '\0')
+    while (map[0][j] && map[i - 1][j])
     {
         if (map[0][j] != '1' || map[i - 1][j] != '1')
             return (0);
         j++;
     }
     i = 1;
-    len = ft_strlen(*map[i]);
-    while (*map[i] != '\0')
+    len = strlen(map[i]);
+    while (map[i])
     {
         if (map[i][0] != '1' || map[i][len - 1] != '1')
             return (0);
@@ -55,6 +59,7 @@ static int is_wall(char **map)
     }
     return (1);
 }
+/*
 // cette fonction permet de verifier si la map est valide
 static int verif_element(t_game *game)
 {
@@ -84,13 +89,4 @@ static int verif_element(t_game *game)
         return (0);
     return (1);
 }
-int ultimate_check(char **argv, t_game *game)
-{
-    if (is_rectang(game->map) == 0)
-        return (0);
-    if (is_wall(game->map) == 0)
-        return (0);
-    if (verif_element(game) == 0)
-        return (0);
-    return (1);
-}
+*/

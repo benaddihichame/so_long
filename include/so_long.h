@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/14 12:17:31 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:23:23 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_game
     int     vide;
     int     x;
     int     y;
-    mlx_texture_t *sol;
+    mlx_texture_t *ecto;
     mlx_texture_t *pokeball;
-    mlx_texture_t *porte;
+    mlx_texture_t *door;
     mlx_texture_t *arbre;
     mlx_texture_t *grass;
 } t_game;
@@ -44,6 +44,7 @@ int is_valid(char *str);
 void get_map(char *file_name, t_game *game);
 int ultimate_check(char **argv, t_game *game);
 int count_line(char *file_name);
-
+int  is_rectang(char **map);
+int is_wall(char **map);
 
 #endif

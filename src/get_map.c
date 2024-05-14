@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 14:22:52 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:04:14 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int count_line(char *file_name)
     fd = open(file_name, O_RDONLY);
     if (fd == -1)
     {
-        perror("je suis la");
+        perror("Error fd");
         return (1);
     }
     input = malloc(sizeof(char *) * 100);
@@ -58,7 +58,7 @@ void get_map(char *file_name, t_game *game)
     game->map = malloc((count_line(file_name) + 1) * sizeof(char *));
     if (game->map == NULL)
     {
-        ft_printf("erroree");
+        ft_printf("Error malloc");
         return;
     }
     fd = open(file_name, O_RDONLY);
