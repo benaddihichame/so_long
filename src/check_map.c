@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 17:59:40 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:14:54 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ int is_wall(char **map)
 
     i = 0;
     j = 0;
+
+    // len of the first line
     while (map[0][i])
         i++;
+    
+    // check the first and last line 
     while (map[0][j] && map[i - 1][j])
     {
-        if (map[0][j] != '1' || map[i - 1][j] != '1')
+        if (map[0][j - 1] != '1' || map[i - 1][j -  1] != '1')
             return (0);
         j++;
     }
