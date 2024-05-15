@@ -1,1 +1,5 @@
 backtraking check si le perso peut sortir 
+gere les touches deplacement
+afficher dans le bonne ordre les image 
+bloquer au mur 
+recuperation des collectible + bloque la sortie jusqua 0 collectible

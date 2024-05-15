@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/15 17:27:07 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:16:13 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,29 @@ int verif_element(t_game *game)
     if (game->player != 1 || game->exit == 0 || game->collectible == 0 || game->exit > 1)
         return (0);
     return (1);
+}
+int is_wall(t_game *game)
+{
+    int i;
+    int j;
+    int len;
+
+    // Len of the first line
+    len = strlen(game->map[0]);
+
+    // Check the first and last line
+    for (j = 0; j < len; j++)
+    {
+        if (game->map[0][j] != '1' || game->map[game->y - 1][j] != '1')
+            return 0;
+    }
+
+    // Check the first and last column of each line
+    for (i = 1; i < game->y - 1; i++)
+    {
+        if (game->map[i][0] != '1' || game->map[i][len - 1] != '1')
+            return 0;
+    }
+    
+    return 1;
 }
