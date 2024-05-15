@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/15 20:16:13 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:57:45 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include <string.h>
 // cette fonction permet de verifier si la map est un rectangle
-int  is_rectang(t_game *game)
+int  is_rectang(char **map)
 {
-    int i;
+    int		i;
 
     i = 0;
-    if(game->map == NULL)
-        return (0);
-    while (game->map[i])
+    if(!map)
+        return (FALSE);
+    while (map[i])
     {
-        if (strlen(game->map[i]) != strlen(game->map[i]))
+        if (map[i + 1] != NULL  && strlen(map[i]) != strlen(map[i + 1]))
         {
             printf("Error: la map n'est pas un rectangle\n");
-            return (0);
+            return (FALSE);
         }
         i++;
     }
-    return (1);
+    return (TRUE);
 }
 /*
 // cette fonction permet de verifier si la map est entouré de mur
@@ -75,7 +75,7 @@ int verif_element(t_game *game)
     game->exit = 0;
     game->collectible = 0;
     i = 0;
-    while (game->map[i] != '\0')
+    while (game->map[i] != NULL)
     {
         while (game->map[i][j] != '\0')
         {
@@ -90,10 +90,11 @@ int verif_element(t_game *game)
         }
         i++;
     }
-    if (game->player != 1 || game->exit == 0 || game->collectible == 0 || game->exit > 1)
-        return (0);
-    return (1);
+    if (game->player != 1 && game->exit != 1 && game->collectible >= 1)
+        return (FALSE);
+    return (TRUE);
 }
+/*
 int is_wall(t_game *game)
 {
     int i;
@@ -119,3 +120,4 @@ int is_wall(t_game *game)
     
     return 1;
 }
+*/
