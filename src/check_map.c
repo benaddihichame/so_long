@@ -6,23 +6,23 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 19:14:54 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:27:07 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include <string.h>
 // cette fonction permet de verifier si la map est un rectangle
-int  is_rectang(char **map)
+int  is_rectang(t_game *game)
 {
     int i;
 
     i = 0;
-    if(!map)
+    if(game->map == NULL)
         return (0);
-    while (map[i])
+    while (game->map[i])
     {
-        if (strlen(map[i]) != strlen(map[0]))
+        if (strlen(game->map[i]) != strlen(game->map[i]))
         {
             printf("Error: la map n'est pas un rectangle\n");
             return (0);
@@ -31,9 +31,9 @@ int  is_rectang(char **map)
     }
     return (1);
 }
-
+/*
 // cette fonction permet de verifier si la map est entouré de mur
-int is_wall(char **map)
+int is_wall(t_game *game)
 {
     int i;
     int j;
@@ -43,29 +43,30 @@ int is_wall(char **map)
     j = 0;
 
     // len of the first line
-    while (map[0][i])
+    while (game->map[0][i])
         i++;
     
     // check the first and last line 
-    while (map[0][j] && map[i - 1][j])
+    while (game->map[0][j] && game->map[i - 1][j])
     {
-        if (map[0][j - 1] != '1' || map[i - 1][j -  1] != '1')
+        if (game->map[0][j - 1] != '1' || game->map[i - 1][j -  1] != '1')
             return (0);
         j++;
     }
     i = 1;
-    len = strlen(map[i]);
-    while (map[i])
+    len = strlen(game->map[i]);
+    while (game->map[i])
     {
-        if (map[i][0] != '1' || map[i][len - 1] != '1')
+        if (game->map[i][0] != '1' || game->map[i][len - 1] != '1')
             return (0);
         i++;
     }
     return (1);
 }
-/*
+*/
+
 // cette fonction permet de verifier si la map est valide
-static int verif_element(t_game *game)
+int verif_element(t_game *game)
 {
     int i;
     int j;
@@ -93,4 +94,3 @@ static int verif_element(t_game *game)
         return (0);
     return (1);
 }
-*/
