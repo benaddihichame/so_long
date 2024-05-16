@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/16 15:06:17 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:18:32 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int verif_element(t_game *game);
 int  is_rectang(char **map);
 int is_wall(t_game *game);
 void loading_png(t_game *game);
+void display(t_game *game);
 
 
 #endif
