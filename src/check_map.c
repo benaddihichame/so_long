@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/15 21:57:45 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:30:47 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,3 +121,25 @@ int is_wall(t_game *game)
     return 1;
 }
 */
+int is_rectang(char **map)
+{
+    int i;
+    size_t len;
+
+    // Valider que la map n'est pas NULL ou vide
+    if (!map || !map[0])
+        return (FALSE);
+
+    i = 0;
+    len = strlen(map[i]);
+    while (map[i])
+    {
+        if (strlen(map[i]) != len)
+        {
+            printf("Error: la map n'est pas un rectangle\n");
+            return (FALSE);
+        }
+        i++;
+    }
+    return (TRUE);
+}
