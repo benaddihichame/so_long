@@ -2,7 +2,8 @@ OBJECTS = \
 	src/main.c \
 	src/get_map.c \
 	src/check_ext.c \
-	src/check_map.c
+	src/check_map.c \
+	src/affichage.c
 
 LIBFT = lib/libft.a
 

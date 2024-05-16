@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/15 22:00:13 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:43:22 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,24 @@ int main(int ac, char **av)
         return (1);
     }
     // loading_png(&game);
-    init_var(&game);
-    get_map(av[1], &game);
-    if (is_valid(av[1]) == 0)
+    //init_var(&game);
+    if (is_valid(av[1]) == FALSE)
+        return (0);
+    if (is_valid(av[1]) == FALSE)
+        return (0);
+    if(is_rectang(game.map) == FALSE)
         return (0);
     if (verif_element(&game) == FALSE)
     {
-        printf("les elements ne respect pas le bon nombre\n");
+        printf("les elements ne respect pas le bon nombre👿\n");
         return (0);
     }
-    if(is_rectang(game.map) == FALSE)
-        return (0);
+    loading_png(&game);
+    get_map(av[1], &game);
     mlx = mlx_init((ft_strlen(game.map[0]) * 32), (count_line(av[1]) * 32) , "so_long", false);
     if (!mlx)
         return(0);
     mlx_loop(mlx);
     return(1);
 }
+

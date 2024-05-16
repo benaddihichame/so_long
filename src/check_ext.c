@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:54:15 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/14 17:01:16 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:16:51 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static char *strchrmod(char *s, char* target)
 int is_valid(char *str)
 {
     if (strchrmod(str, ".ber"))
-        return (1);
+        return (TRUE);
     else
     {
-        ft_printf("Error: Your map is not a .ber !\n");
-        return (0);
+        ft_printf("Error: Your map is not a .ber 👿!\n");
+        return (FALSE);
     }
 }

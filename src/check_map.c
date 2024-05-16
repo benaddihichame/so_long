@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/16 10:30:47 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:59:35 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include <string.h>
+
+
 // cette fonction permet de verifier si la map est un rectangle
 int  is_rectang(char **map)
 {
@@ -31,7 +33,7 @@ int  is_rectang(char **map)
     }
     return (TRUE);
 }
-/*
+
 // cette fonction permet de verifier si la map est entouré de mur
 int is_wall(t_game *game)
 {
@@ -42,11 +44,8 @@ int is_wall(t_game *game)
     i = 0;
     j = 0;
 
-    // len of the first line
     while (game->map[0][i])
         i++;
-    
-    // check the first and last line 
     while (game->map[0][j] && game->map[i - 1][j])
     {
         if (game->map[0][j - 1] != '1' || game->map[i - 1][j -  1] != '1')
@@ -63,7 +62,7 @@ int is_wall(t_game *game)
     }
     return (1);
 }
-*/
+
 
 // cette fonction permet de verifier si la map est valide
 int verif_element(t_game *game)
@@ -77,9 +76,9 @@ int verif_element(t_game *game)
     i = 0;
     while (game->map[i] != NULL)
     {
-        while (game->map[i][j] != '\0')
+        j = 0;
+        while (game->map[i][j])
         {
-            j = 0;
             if (game->map[i][j] == 'P')
                 game->player++;
             else if (game->map[i][j] == 'E')
@@ -90,7 +89,7 @@ int verif_element(t_game *game)
         }
         i++;
     }
-    if (game->player != 1 && game->exit != 1 && game->collectible >= 1)
+    if (game->player != 1 && game->exit != 1 && game->collectible < 1)
         return (FALSE);
     return (TRUE);
 }
@@ -121,25 +120,3 @@ int is_wall(t_game *game)
     return 1;
 }
 */
-int is_rectang(char **map)
-{
-    int i;
-    size_t len;
-
-    // Valider que la map n'est pas NULL ou vide
-    if (!map || !map[0])
-        return (FALSE);
-
-    i = 0;
-    len = strlen(map[i]);
-    while (map[i])
-    {
-        if (strlen(map[i]) != len)
-        {
-            printf("Error: la map n'est pas un rectangle\n");
-            return (FALSE);
-        }
-        i++;
-    }
-    return (TRUE);
-}
