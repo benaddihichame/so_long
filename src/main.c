@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/17 16:03:31 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/17 23:22:14 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ void	init_var(t_game *game)
     //     game->tab_png[i].img = NULL;
     //     i++;
     // }
+}
+void    resiwe(t_game *game)
+{
+    mlx_resize_image(game->tab_png[0].img, 32, 32);
+    mlx_resize_image(game->tab_png[1].img, 32, 32);
+    mlx_resize_image(game->tab_png[2].img, 32, 32);
+    mlx_resize_image(game->tab_png[3].img, 32, 32);
+    mlx_resize_image(game->tab_png[4].img, 32, 32);
 }
 
 int main(int ac, char **av)
@@ -49,11 +57,13 @@ int main(int ac, char **av)
         printf("les elements ne respect pas le bon nombre👿\n");
         return (0);
     }
-    game.mlx = mlx_init((ft_strlen(game.map[0]) * 32), (count_line(av[1]) * 32) , "so_long", false);
+    game.mlx = mlx_init((count_line(av[1]) * 32), (ft_strlen(game.map[0]) * 32) , "so_long", false);
     if (!game.mlx)
         return(0);
     loading_png(&game);
-    //display(&game);
+    resiwe(&game);
+    // mlx_image_to_window(game.mlx, game.tab_png[0].img , 0 , 0);
+    display(&game);
     mlx_loop(game.mlx);
     return(1);
 }

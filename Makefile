@@ -1,9 +1,9 @@
 OBJECTS = \
-	src/main.c \
-	src/get_map.c \
-	src/check_ext.c \
-	src/check_map.c \
-	src/affichage.c
+	src/main.o \
+	src/get_map.o \
+	src/check_ext.o \
+	src/check_map.o \
+	src/affichage.o
 
 LIBFT = lib/libft.a
 
@@ -25,15 +25,13 @@ $(LIBFT):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean -C lib
-	rm $(OBJECTS)
+	$(MAKE) clean -C lib
+	rm -f $(OBJECTS)
 
 fclean: clean
-	make fclean -C lib
-	rm $(NAME)
+	$(MAKE) fclean -C lib
+	rm -f $(NAME)
 
 re: fclean all
-	make fclean -C lib
 
 .PHONY: all clean fclean re
-

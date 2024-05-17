@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/15 20:59:32 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/17 23:26:35 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int count_line(char *file_name)
     char *line;
     char   **input;
     i = 0;
-    // printf("file: %s\n", file_name);
     fd = open(file_name, O_RDONLY);
     if (fd == -1)
     {
@@ -38,12 +37,7 @@ int count_line(char *file_name)
         free(line);
     }
       input[i] = NULL;
-    // i = 0;  
-    // while (input[i])
-    // {
-    //     printf("%s\n", input[i]);
-    //     i++;
-    // }
+    printf("the number of line is %d\n", i);
     close(fd);
     return (i);
 }
