@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/16 21:57:05 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:03:31 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 void	init_var(t_game *game)
 {
+    //int i = 0;
 	game->map = NULL;
 	game->player = 0;
 	game->exit = 0;
 	game->collectible = 0;
 	game->vide = 0;
-    game->tab_png->texture = NULL;
-    game->tab_png->img = NULL;
+    // while (i < 6)
+    // {
+    //     game->tab_png[i].texture = NULL;
+    //     game->tab_png[i].img = NULL;
+    //     i++;
+    // }
 }
 
 int main(int ac, char **av)
 {
     (void)av;
     t_game game;
-    mlx_t *mlx;
 
     if (ac != 2)
     {
@@ -45,13 +49,12 @@ int main(int ac, char **av)
         printf("les elements ne respect pas le bon nombre👿\n");
         return (0);
     }
-    printf("oui");
-   loading_png(&game);
-   display(&game);
-    mlx = mlx_init((ft_strlen(game.map[0]) * 32), (count_line(av[1]) * 32) , "so_long", false);
-    if (!mlx)
+    game.mlx = mlx_init((ft_strlen(game.map[0]) * 32), (count_line(av[1]) * 32) , "so_long", false);
+    if (!game.mlx)
         return(0);
-    mlx_loop(mlx);
+    loading_png(&game);
+    //display(&game);
+    mlx_loop(game.mlx);
     return(1);
 }
 

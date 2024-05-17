@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/16 21:18:32 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:53:51 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 
 typedef struct s_mlx_img
 {
-    mlx_image_t *img;
-    mlx_texture_t *texture;
+    mlx_image_t     *img;
+    mlx_texture_t   *texture;
 }            t_mlx_img;
 
 
 typedef struct s_game
 {
-    mlx_t   *mlx;
-    t_mlx_img tab_png[6];
+    mlx_t       *mlx;
+    t_mlx_img   *tab_png;
     char    **map;
     int     fd;
     char    player;
