@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/17 23:26:35 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:07:40 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int count_line(char *file_name)
         free(line);
     }
       input[i] = NULL;
-    printf("the number of line is %d\n", i);
     close(fd);
     return (i);
 }
@@ -58,6 +57,7 @@ void get_map(char *file_name, t_game *game)
     fd = open(file_name, O_RDONLY);
     while ((line = get_next_line(fd)) != NULL)
     {
+        printf("line %s\n", line);
         game->map[i] = line;
         i++;
     }

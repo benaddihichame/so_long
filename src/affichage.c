@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:47:18 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/17 23:22:04 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:33:00 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void display(t_game *game)
     while (game->map[++i])
     { 
         j = -1;
-        game->x = i;
         while (game->map[i][++j] != '\0')
         {
-            game->y = j;
+            game->x = j; 
+            game->y = i;
             //if (game->map[i][j] == '0')
             mlx_image_to_window(game->mlx, game->tab_png[0].img, game->x * PIXEL, game->y * PIXEL);
             if (game->map[i][j] == 'C')

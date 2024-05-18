@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/17 15:54:09 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:58:32 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int verif_element(t_game *game)
         }
         i++;
     }
-    if (game->player != 1 && game->exit != 1 && game->collectible < 1)
+    if (game->player != 1 || game->exit != 1 || game->collectible < 1)
         return (FALSE);
     return (TRUE);
 }
