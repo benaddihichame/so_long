@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/18 12:58:32 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/20 05:43:06 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,30 +93,32 @@ int verif_element(t_game *game)
         return (FALSE);
     return (TRUE);
 }
-/*
-int is_wall(t_game *game)
+
+int	is_wall(t_game *game)
 {
-    int i;
-    int j;
-    int len;
+	int	i;
+	int	j;
+	int	height;
 
-    // Len of the first line
-    len = strlen(game->map[0]);
-
-    // Check the first and last line
-    for (j = 0; j < len; j++)
-    {
-        if (game->map[0][j] != '1' || game->map[game->y - 1][j] != '1')
-            return 0;
-    }
-
-    // Check the first and last column of each line
-    for (i = 1; i < game->y - 1; i++)
-    {
-        if (game->map[i][0] != '1' || game->map[i][len - 1] != '1')
-            return 0;
-    }
-    
-    return 1;
+	i = 0;
+	while (game->map[0][i])
+	{
+		if (game->map[0][i++] != '1')
+			return (FALSE);
+	}
+	i = 0;
+	while (game->map[++i])
+	{
+		if (game->map[i][0] != '1' ||
+			game->map[i][strlen(game->map[i]) - 1] != '1')
+			return (FALSE);
+	}
+	height = i - 1;
+	j = 0;
+	while (game->map[height][j])
+	{
+		if (game->map[height][j++] != '1')
+			return (FALSE);
+	}
+	return (TRUE);
 }
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/18 12:41:47 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/20 05:43:54 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int main(int ac, char **av)
     init_var(&game);
     get_map(av[1], &game);
     if (is_valid(av[1]) == FALSE)
+        return (0);
+    if (is_wall(&game) == FALSE)
         return (0);
     if (verif_element(&game) == FALSE)
     {
