@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/20 05:43:54 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:58:52 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void    resiwe(t_game *game)
     mlx_resize_image(game->tab_png[2].img, 32, 32);
     mlx_resize_image(game->tab_png[3].img, 32, 32);
     mlx_resize_image(game->tab_png[4].img, 32, 32);
+    mlx_resize_image(game->tab_png[5].img, 32, 32);
 }
 
 int main(int ac, char **av)
@@ -50,14 +51,17 @@ int main(int ac, char **av)
     get_map(av[1], &game);
     if (is_valid(av[1]) == FALSE)
         return (0);
-    if (is_wall(&game) == FALSE)
-        return (0);
     if (verif_element(&game) == FALSE)
     {
         printf("les elements ne respect pas le bon nombre👿\n");
         return (0);
     }
-    if(is_rectang(game.map) == FALSE)
+    if (is_wall(game.map) == FALSE)
+    {
+        printf("oui");
+        return (0);
+    }
+    if (is_rectang(game.map) == FALSE)
         return (0);
     game.mlx = mlx_init((ft_strlen(game.map[0]) * 32),(count_line(av[1]) * 32), "so_long", false);
     if (!game.mlx)
