@@ -20,3 +20,4 @@
 //     game->player.x ;
 //     game->player.y;
 // }
+    printf("\033[31;5mHello World! blink\033[0m\n");
