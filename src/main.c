@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/22 17:49:12 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/22 21:32:48 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,31 @@ void	init_var(t_game *game)
     //     i++;
     // }
 }
-//typedef void (*mlx_keyfunc)(mlx_key_data_t keydata, void* param);
+int   error_msg(t_game game , char **av)
+{
+    (void)av;
+    if (is_valid(av[1]) == FALSE)
+    {
+        printf("Error : La map n'est .ber\n");
+        return (0);
+    }
+    if (verif_element(&game) == FALSE)
+    {
+        printf("Error : les elements ne respect pas le bon nombre\n");
+        return (0);
+    }
+    if (is_wall(game.map) == FALSE)
+    {
+        printf("Error : La map n'est pas close\n");
+        return (0);
+    }
+    if (is_rectang(game.map) == FALSE)
+    {
+        printf("Error : La map n'est pas un rectangle\n");
+        return (0);
+    }
+    return (TRUE);
+}
 void    event_listener(mlx_key_data_t keydata, void* param)
 {
     t_game *game;
@@ -53,23 +77,26 @@ void    event_listener(mlx_key_data_t keydata, void* param)
             game->tab_png[3].img->instances[0].y = game->y * PIXEL;
     }
 }
-
-int main(int ac, char **av)
+void    basic_err(int ac , char **av)
 {
-    (void)av;
-    t_game game;
-
-    
     if (ac != 2)
     {
-        printf("Error Need 2 argument\n");
-        return (1);
+        printf("\033[31;5mError : You must have 2 arguments\033[0m\n");
+        return ;
     }
-    printf("dddd");
+    else if(is_valid(av[1]) == FALSE)
+    {
+        printf("\033[31;5mError : Invalid extension\033[0m\n");
+        return ;
+    }
+}
+int main(int ac, char **av)
+{
+    t_game game;
+
+    basic_err(ac, av);
     init_var(&game);
     get_map(av[1], &game);
-    if (is_valid(av[1]) == FALSE)
-        return (0);
     if (verif_element(&game) == FALSE)
     {
         printf("les elements ne respect pas le bon nombre👿\n");
@@ -83,8 +110,7 @@ int main(int ac, char **av)
     if (!game.mlx)
         return(0);
     loading_png(&game);
-    resiwe(&game);
-    //game.tab_png[3].img->instances[0].z = 0;
+    resize(&game);
     mlx_key_hook(game.mlx, event_listener, &game);
     display(&game);
     mlx_loop(game.mlx);

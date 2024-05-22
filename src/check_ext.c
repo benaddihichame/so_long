@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:54:15 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/16 11:16:51 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/22 21:27:18 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int is_valid(char *str)
         return (TRUE);
     else
     {
-        ft_printf("Error: Your map is not a .ber 👿!\n");
+        printf("\033[31;5mError : Invalid extension\033[0m\n");
         return (FALSE);
     }
 }
