@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:48:39 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:59:59 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void get_map(char *file_name, t_game *game)
     while ((line = get_next_line(fd)) != NULL)
     {
         line[ft_strlen(line) -1] = 0;
-        printf("line ==%s==\n", line);
+        //printf("line ==%s==\n", line);
         game->map[i] = line;
         i++;
     }

@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:47:18 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/22 13:59:42 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:37:07 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,53 @@ void loading_png(t_game *game)
         mlx_delete_texture(game->tab_png[i].texture);
         i++;
     }
+    //game->tab_png[0].img->instances[0].z = 100;
 }
+void display_background(t_game *game)
+{
+    int i;
+    int j;
 
+    i = -1;
+    while (game->map[++i])
+    { 
+        j = -1;
+        while (game->map[i][++j] != '\0')
+            mlx_image_to_window(game->mlx, game->tab_png[0].img, j * PIXEL, i * PIXEL);
+    }
+}
 
 void display(t_game *game)
 {
     int i;
     int j;
 
-  
     i = -1;
+    display_background(game);
     while (game->map[++i])
     { 
         j = -1;
         while (game->map[i][++j] != '\0')
         {
-            game->x = j; 
-            game->y = i;
-            //if (game->map[i][j] == '0')
-            mlx_image_to_window(game->mlx, game->tab_png[0].img, game->x * PIXEL, game->y * PIXEL);
-            if (game->map[i][j] == 'C')
-                mlx_image_to_window(game->mlx, game->tab_png[1].img, game->x * PIXEL, game->y * PIXEL);
+            if (game->x == j && game->y == i)
+                mlx_image_to_window(game->mlx, game->tab_png[3].img, j * PIXEL, i * PIXEL);
+            else if (game->map[i][j] == 'C')
+                mlx_image_to_window(game->mlx, game->tab_png[1].img, j * PIXEL, i * PIXEL);
             else if (game->map[i][j] == '1')
-                mlx_image_to_window(game->mlx, game->tab_png[2].img, game->x * PIXEL, game->y * PIXEL);
+                mlx_image_to_window(game->mlx, game->tab_png[2].img, j * PIXEL, i * PIXEL);
             else if (game->map[i][j] == 'E')
-                mlx_image_to_window(game->mlx, game->tab_png[4].img, game->x * PIXEL, game->y * PIXEL);
-            else if (game->map[i][j] == 'P')
-                mlx_image_to_window(game->mlx, game->tab_png[3].img, game->x * PIXEL, game->y * PIXEL);
+                mlx_image_to_window(game->mlx, game->tab_png[4].img, j * PIXEL, i * PIXEL);
             else if (game->map[i][j] == 'T')
-                mlx_image_to_window(game->mlx, game->tab_png[5].img, game->x * PIXEL, game->y * PIXEL);
+                mlx_image_to_window(game->mlx, game->tab_png[5].img, j * PIXEL, i * PIXEL);
         }
     }
+}
+void    resiwe(t_game *game)
+{
+    mlx_resize_image(game->tab_png[0].img, 32, 32);
+    mlx_resize_image(game->tab_png[1].img, 32, 32);
+    mlx_resize_image(game->tab_png[2].img, 32, 32);
+    mlx_resize_image(game->tab_png[3].img, 32, 32);
+    mlx_resize_image(game->tab_png[4].img, 32, 32);
+    mlx_resize_image(game->tab_png[5].img, 32, 32);
 }

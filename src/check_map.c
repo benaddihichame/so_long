@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/22 12:49:20 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:39:21 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ int verif_element(t_game *game)
         while (game->map[i][j])
         {
             if (game->map[i][j] == 'P')
+            {
+                game->x = j;
+                game->y = i;
                 game->player++;
+            }
             else if (game->map[i][j] == 'E')
                 game->exit++;
             else if (game->map[i][j] == 'C')
@@ -64,36 +68,6 @@ int verif_element(t_game *game)
     return (TRUE);
 }
 
-// int	is_wall(t_game *game)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	height;
-
-// 	i = 0;
-// 	while (game->map[0][i])
-// 	{
-// 		if (game->map[0][i++] != '1')
-// 			return (FALSE);
-// 	}
-// 	i = 0;
-// 	while (game->map[++i])
-// 	{
-// 		if (game->map[i][0] != '1' ||
-// 			game->map[i][strlen(game->map[i]) - 1] != '1')
-// 			return (FALSE);
-// 	}
-// 	height = i - 1;
-// 	j = 0;
-// 	while (game->map[height][j])
-// 	{
-// 		if (game->map[height][j++] != '1')
-// 			return (FALSE);
-// 	}
-// 	return (TRUE);
-// }
-
-
 int	is_wall(char **map)
 {
 	int	i;
@@ -103,10 +77,7 @@ int	is_wall(char **map)
 	while (map[0][i])
 	{
 		if (map[0][i] != '1')
-			{
-                printf("%d -> %ld -> %c\n",i, ft_strlen(map[0]), map[0][i]);
                 return (FALSE);
-            }
         i++;
 	}
 	i = 0;
@@ -123,6 +94,5 @@ int	is_wall(char **map)
 			return (FALSE);
         j++;
 	}
-
 	return (TRUE);
 }
