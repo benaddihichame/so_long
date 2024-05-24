@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:56:35 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/24 20:24:24 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:49:12 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,12 @@ void add_data(t_game *game)
         i++;
     }
 }
-void    grab_pokeball(t_game *game)
+void    grab_pokeball(t_game *game , int x, int y)
 {
-    int i;
-    int j;
-
-    i = 0;
-    while (game->map[i])
+    if (game->map[y][x] == 'C')
     {
-        j = 0;
-        while (game->map[i][j] && game->poke > 0)
-        {
-            if (game->map[i][j] == 'C')
-                game->map[i][j] = '0';
-            game->poke--;
-            j++;
-        }
-        i++;
+        game->map[y][x] = '0';
+        game->poke--;
+        mlx_image_to_window(game->mlx, game->tab_png[0].img, x * PIXEL , y * PIXEL);
     }
 }
