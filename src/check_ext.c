@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:54:15 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/22 21:27:18 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:43:03 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,5 @@ int is_valid(char *str)
     if (strchrmod(str, ".ber"))
         return (TRUE);
     else
-    {
-        printf("\033[31;5mError : Invalid extension\033[0m\n");
         return (FALSE);
-    }
 }

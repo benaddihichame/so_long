@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/22 21:08:06 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:24:34 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_game
     int     x;
     int     y;
     int     step;
+    int     poke;
 } t_game;
 
 
@@ -56,5 +57,8 @@ void loading_png(t_game *game);
 void display(t_game *game);
 void    resize(t_game *game);
 int   error_msg(t_game game , char **av);
+void add_data(t_game *game);
+void    grab_pokeball(t_game *game);
+void display_background(t_game *game);
 
 #endif

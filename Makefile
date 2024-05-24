@@ -3,7 +3,8 @@ OBJECTS = \
 	src/get_map.o \
 	src/check_ext.o \
 	src/check_map.o \
-	src/affichage.o
+	src/affichage.o \
+	src/moove.o
 
 LIBFT = lib/libft.a
 

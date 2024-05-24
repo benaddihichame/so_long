@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:47:18 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/22 21:08:04 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:04:56 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void loading_png(t_game *game)
         mlx_delete_texture(game->tab_png[i].texture);
         i++;
     }
-    //game->tab_png[0].img->instances[0].z = 100;
 }
 void display_background(t_game *game)
 {
