@@ -1,5 +1,7 @@
 backtraking check si le perso peut sortir 
-gere les touches deplacement
-afficher dans le bonne ordre les image 
-bloquer au mur 
 recuperation des collectible + bloque la sortie jusqua 0 collectible
+changer le gnl et lib de max en mes projet
+gere enemie tue 
+faire animation
+faire compteur afficher a l'ecran
+la map ne check pas bien si ya un espace dans la map

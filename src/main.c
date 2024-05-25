@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/24 21:22:24 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:35:13 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ void event_listener(mlx_key_data_t keydata, void* param)
     // Mettre à jour l'affichage de l'ancienne position avec l'image de fond
     mlx_image_to_window(game->mlx, game->tab_png[0].img, x * PIXEL, y * PIXEL);
 
+    if (game->map[new_y][new_x] == 'T')
+    {
+        mlx_close_window(game->mlx);
+        ft_printf("You GET CAPTURED!\n");
+    }
     // Si le joueur se déplace sur un collectible
     if (game->map[new_y][new_x] == 'C')
         grab_pokeball(game, new_x, new_y);
@@ -155,6 +160,26 @@ int   basic_err(int ac , char **av)
 //     }
 //     return (1);
 // }
+int all_checks(t_game *game)
+{
+    if (verif_element(game) == FALSE)
+    {
+        ft_printf("\033[31;5mError : Not Good Amount of Element\033[0m\n");
+        return 0;
+    }
+    if (is_wall(game->map) == FALSE)
+    {
+        ft_printf("\033[31;5mError : The Map is not Surrounded by Wall\033[0m\n");
+        return 0;
+    }
+    if (is_rectang(game->map) == FALSE)
+    {
+        ft_printf("\033[31;5mError : The Map is not Rectangle\033[0m\n");
+        return 0;
+    }
+    return 1;
+}
+
 int main(int ac, char **av)
 {
     t_game game;
@@ -163,22 +188,8 @@ int main(int ac, char **av)
         return (0);
     init_var(&game);
     get_map(av[1], &game);
-        if (verif_element(&game) == FALSE)
-    {
-        ft_printf("\033[31;5mError : Not Good Amount of Element\033[0m\n");
+    if (all_checks(&game) != 1)
         return (0);
-    }
-    if (is_wall(game.map) == FALSE)
-    {
-        ft_printf("\033[31;5mError : The Map is not Surrounded by Wall\033[0m\n");
-        return (0);
-    }
-    if (is_rectang(game.map) == FALSE)
-    {
-        ft_printf("\033[31;5mError : The Map is not Rectangle\033[0m\n");
-        return (0);
-    }
-    
     add_data(&game);
     game.mlx = mlx_init((ft_strlen(game.map[0]) * 32),(count_line(av[1]) * 32), "so_long", false);
     if (!game.mlx)
