@@ -4,7 +4,8 @@ OBJECTS = \
 	src/check_ext.o \
 	src/check_map.o \
 	src/affichage.o \
-	src/moove.o
+	src/moove.o \
+	src/err.o
 
 LIBFT = lib/libft.a
 

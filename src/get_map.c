@@ -6,13 +6,12 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/22 16:59:59 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/25 21:41:34 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../include/so_long.h"
-#include <string.h>
 
 // cette fonction permet de compter le nombre de ligne dans le fichier
 

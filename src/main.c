@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/25 12:35:13 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/25 21:54:58 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_var(t_game *game)
 {
-    //int i = 0;
+    // int i = 0;
 	game->map = NULL;
 	game->player = 0;
 	game->exit = 0;
@@ -42,7 +42,6 @@ void event_listener(mlx_key_data_t keydata, void* param)
         mlx_close_window(game->mlx);
         return;
     }
-
     if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE && game->map[y - 1][x] != '1')
         new_y--;
     else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE && game->map[y + 1][x] != '1')
@@ -51,18 +50,19 @@ void event_listener(mlx_key_data_t keydata, void* param)
         new_x--;
     else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE && game->map[y][x + 1] != '1')
         new_x++;
-
     // Vérifiez si le joueur a réellement déplacé
     if (new_x == x && new_y == y)
         return;
-
     // Mettre à jour l'affichage de l'ancienne position avec l'image de fond
-    mlx_image_to_window(game->mlx, game->tab_png[0].img, x * PIXEL, y * PIXEL);
-
+    if (game->map[y][x] == 'E')
+        mlx_image_to_window(game->mlx, game->tab_png[4].img, x * PIXEL, y * PIXEL);
+    else 
+        mlx_image_to_window(game->mlx, game->tab_png[0].img, x * PIXEL, y * PIXEL);
     if (game->map[new_y][new_x] == 'T')
     {
         mlx_close_window(game->mlx);
         ft_printf("You GET CAPTURED!\n");
+        return ;
     }
     // Si le joueur se déplace sur un collectible
     if (game->map[new_y][new_x] == 'C')
@@ -73,112 +73,15 @@ void event_listener(mlx_key_data_t keydata, void* param)
         mlx_close_window(game->mlx);
         ft_printf("You exited the map!\n");
     }
-
     // Mettre à jour les coordonnées du joueur
     game->x = new_x;
     game->y = new_y;
-
     game->step++;
     ft_printf("You moved: %d Time\n", game->step);
-
     // Mettre à jour l'affichage de la nouvelle position avec l'image du personnage
     mlx_image_to_window(game->mlx, game->tab_png[3].img, new_x * PIXEL, new_y * PIXEL);
 }
-// void    event_listener(mlx_key_data_t keydata, void* param)
-// {
-//     t_game *game;
-//     game = (t_game *)param;
-//     int y = game->y;
-//     int x = game->x;
-//     if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
-//         mlx_close_window(game->mlx);
-//     if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE && game->map[y - 1][x] != '1')
-//     {
-//         if (game->map[y - 1][x] == 'C')
-//             grab_pokeball(game, x , y - 1);
-//         game->y--;
-//     }
-//     else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE && game->map[y + 1][x] != '1')
-//     {
-//         if (game->map[y + 1][x] == 'C')
-//             grab_pokeball(game, x , y + 1);
-//         game->y++;
-//     }
-//     else if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE && game->map[y][x - 1] != '1')
-//     {
-//         if (game->map[y][x - 1] == 'C')
-//             grab_pokeball(game, x - 1 , y);
-//         game->x--;
-//     }
-//     else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE && game->map[y][x + 1] != '1')
-//     {
-//         if(game->map[y][x + 1] == 'C')
-//             grab_pokeball(game, x + 1 , y);
-//         game->x++;
-//     }
-//     if (game->x != x || game->y != y)
-//     {
-//             game->step++;
-//             ft_printf("You mooved : %d Time\n", game->step);
-//             game->tab_png[3].img->instances[0].x = game->x * PIXEL;
-//             game->tab_png[3].img->instances[0].y = game->y * PIXEL;
-//             //display(game);
-//     }
-// }
-int   basic_err(int ac , char **av)
-{
-    if (ac != 2)
-    {
-        ft_printf("\033[31;5mError : You must have 2 arguments\033[0m\n");
-        return (0);
-    }
-    if(is_valid(av[1]) == FALSE)
-    {
-        ft_printf("\033[31;5mError : Invalid extension\033[0m\n");
-        return (0);
-    }
-    return (1);
-}
 
-// int map_err(t_game *game)
-// {
-//     t_game map;
-//     if (verif_element(&game) == FALSE)
-//     {
-//         ft_printf("\033[31;5mError : Not Good Amount of Element\033[0m\n");
-//         return (0);
-//     }
-//     if (is_wall(map.map) == FALSE)
-//     {
-//         ft_printf("\033[31;5mError : The Map is not Surrounded by Wall\033[0m\n");
-//         return (0);
-//     }
-//     if (is_rectang(map.map) == FALSE)
-//     {
-//         ft_printf("\033[31;5mError : The Map is not Rectangle\033[0m\n");
-//         return (0);
-//     }
-//     return (1);
-// }
-int all_checks(t_game *game)
-{
-    if (verif_element(game) == FALSE)
-    {
-        ft_printf("\033[31;5mError : Not Good Amount of Element\033[0m\n");
-        return 0;
-    }
-    if (is_wall(game->map) == FALSE)
-    {
-        ft_printf("\033[31;5mError : The Map is not Surrounded by Wall\033[0m\n");
-        return 0;
-    }
-    if (is_rectang(game->map) == FALSE)
-    {
-        ft_printf("\033[31;5mError : The Map is not Rectangle\033[0m\n");
-        return 0;
-    }
-    return 1;
-}
 
 int main(int ac, char **av)
 {

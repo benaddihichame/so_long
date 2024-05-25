@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/24 20:43:20 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/25 21:42:39 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 
 # define PIXEL 32
 # define TRUE 1
@@ -60,5 +61,7 @@ int   error_msg(t_game game , char **av);
 void add_data(t_game *game);
 void    grab_pokeball(t_game *game , int y, int x);
 void display_background(t_game *game);
+int   basic_err(int ac , char **av);
+int all_checks(t_game *game);
 
 #endif

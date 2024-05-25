@@ -1,7 +1,6 @@
 backtraking check si le perso peut sortir 
-recuperation des collectible + bloque la sortie jusqua 0 collectible
 changer le gnl et lib de max en mes projet
 gere enemie tue 
 faire animation
 faire compteur afficher a l'ecran
-la map ne check pas bien si ya un espace dans la map
+ne doit pas enlever la porte
