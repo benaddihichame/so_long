@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:47:18 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/24 18:04:56 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:16:46 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,16 @@ void    resize(t_game *game)
     mlx_resize_image(game->tab_png[3].img, 32, 32);
     mlx_resize_image(game->tab_png[4].img, 32, 32);
     mlx_resize_image(game->tab_png[5].img, 32, 32);
+}
+
+void    display_moove_count(t_game *game)
+{
+    char *move_str;
+
+    move_str = ft_itoa(game->moove_count);
+    if (move_str)
+    {
+            mlx_put_string(game->mlx, move_str, 10 , 10);
+            free(move_str);
+    }
 }

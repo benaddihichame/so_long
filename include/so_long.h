@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/25 21:42:39 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:46:59 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_game
     int     y;
     int     step;
     int     poke;
+    int     moove_count;
 } t_game;
 
 
@@ -63,5 +64,6 @@ void    grab_pokeball(t_game *game , int y, int x);
 void display_background(t_game *game);
 int   basic_err(int ac , char **av);
 int all_checks(t_game *game);
+void    display_moove_count(t_game *game);
 
 #endif

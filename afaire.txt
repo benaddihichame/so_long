@@ -1,6 +1,4 @@
 backtraking check si le perso peut sortir 
 changer le gnl et lib de max en mes projet
-gere enemie tue 
 faire animation
 faire compteur afficher a l'ecran
-ne doit pas enlever la porte

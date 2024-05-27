@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/25 21:54:58 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:08:36 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,11 @@ void event_listener(mlx_key_data_t keydata, void* param)
     game->x = new_x;
     game->y = new_y;
     game->step++;
+    game->moove_count++;
     ft_printf("You moved: %d Time\n", game->step);
     // Mettre à jour l'affichage de la nouvelle position avec l'image du personnage
     mlx_image_to_window(game->mlx, game->tab_png[3].img, new_x * PIXEL, new_y * PIXEL);
+    display_moove_count(game);
 }
 
 
