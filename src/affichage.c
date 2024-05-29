@@ -96,10 +96,11 @@ void    display_moove_count(t_game *game, int start)
     char *move_str;
 
     move_str = ft_itoa(game->moove_count);
+
     if (!start)
     {
         mlx_delete_image(game->mlx, game->tab_png->steps_count);
-        game->tab_png->steps_count = mlx_put_string(game->mlx, move_str, 10 , 10);
+        game->tab_png->steps_count = mlx_put_string(game->mlx, move_str, 30 , 10);
         free(move_str);
     }
 }

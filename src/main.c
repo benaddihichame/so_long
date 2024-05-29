@@ -96,7 +96,7 @@ int main(int ac, char **av)
     if (all_checks(&game) != 1)
         return (0);
     add_data(&game);
-    game.mlx = mlx_init((ft_strlen(game.map[0]) * 32),(count_line(av[1]) * 32), "so_long", false);
+    game.mlx = mlx_init((ft_strlen(game.map[0]) * 32),(count_line(av[1]) * 32), "so_long", true);
     if (!game.mlx)
         return(0);
     loading_png(&game);
