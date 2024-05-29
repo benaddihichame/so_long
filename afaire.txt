@@ -1,3 +1,2 @@
 backtraking check si le perso peut sortir 
-changer le gnl et lib de max en mes projet
 faire animation

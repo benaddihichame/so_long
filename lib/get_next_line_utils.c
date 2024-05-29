@@ -3,63 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:46:14 by maxborde          #+#    #+#             */
-/*   Updated: 2023/11/10 17:52:05 by maxborde         ###   ########.fr       */
+/*   Created: 2023/12/02 15:07:14 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/12/19 16:13:52 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*size_t	ft_strlen(char *s)
+void	ft_cut_buffer(char *buffer)
 {
-	size_t	len;
+	int		i;
+	int		j;
 
-	len = 0;
-	if (!s)
-		return (0);
-	while (s[len])
-		len++;
-	return (len);
-}*/
-
-char	*ft_strchrgnl(char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == c)
-			return (s);
-		s++;
-	}
-	return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == '\n')
+		i++;
+	j = 0;
+	while (buffer[i])
+		buffer[j++] = buffer[i++];
+	buffer[j] = '\0';
 }
 
-char	*ft_strjoingnl(char *left_str, char *buff)
+char	*ft_mod_join(char *line, char *buffer)
 {
-	char	*string;
+	char	*tmp;
 	int		i;
-	int		k;
+	int		j;
 
-	if (!left_str)
+	if (!line)
 	{
-		left_str = malloc(sizeof(char) * 1);
-		left_str[0] = 0;
+		line = malloc(sizeof(char));
+		if (!line)
+			return (NULL);
+		line[0] = '\0';
 	}
-	if (!buff)
-		return (NULL);
-	string = malloc(sizeof(char) * (ft_strlen(left_str) + ft_strlen(buff) + 1));
-	if (!string)
+	tmp = malloc((strlen_gnl(line) + strlen_gnl(buffer) + 1) * sizeof(char));
+	if (!tmp)
 		return (NULL);
 	i = -1;
-	k = -1;
-	while (left_str[++i])
-		string[i] = left_str[i];
-	while (buff[++k])
-		string[i + k] = buff[k];
-	free(left_str);
-	string[i + k] = 0;
-	return (string);
+	while (line[++i])
+		tmp[i] = line[i];
+	free(line);
+	j = 0;
+	while (buffer[j] && buffer[j] != '\n')
+		tmp[i++] = buffer[j++];
+	if (buffer[j] == '\n')
+		tmp[i++] = '\n';
+	tmp[i] = '\0';
+	return (test_end(tmp));
+}
+
+int	strchr_newline(char *buffer)
+{
+	int	i;
+
+	i = 0;
+	if (buffer == NULL)
+		return (0);
+	while (buffer[i])
+	{
+		if (buffer[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	strlen_gnl(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\n' && str[i] != '\0')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i);
+}
+
+char	*test_end(char *dest)
+{
+	if (dest[0] == '\0')
+	{
+		free(dest);
+		dest = NULL;
+	}
+	return (dest);
 }

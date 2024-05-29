@@ -3,58 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 17:41:18 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/31 17:41:21 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/22 20:43:23 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/30 13:19:25 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_find_format(const char c, va_list ap)
+int	print_format(char specifier, va_list ap)
 {
-	int	printlen;
+	int	count;
 
-	printlen = 0;
-	if (c == 'd' || c == 'i')
-		printlen += ft_putnbr(va_arg(ap, int));
-	else if (c == 's')
-		printlen += ft_printstr(va_arg(ap, char *));
-	else if (c == 'c')
-		printlen += ft_putchar(va_arg(ap, int));
-	else if (c == 'p')
-		printlen += ft_print_ptr(va_arg(ap, unsigned long long));
-	else if (c == 'u')
-		printlen += ft_putunbr(va_arg(ap, unsigned int));
-	else if (c == 'x' || c == 'X')
-		printlen += ft_printhex(va_arg(ap, unsigned int), c);
-	else if (c == '%')
-	{
-		printlen++;
-		ft_putchar('%');
-	}
-	return (printlen);
+	count = 0;
+	if (specifier == 'c')
+		count += print_char(va_arg(ap, int));
+	else if (specifier == 's')
+		count += print_string(va_arg(ap, char *));
+	else if (specifier == 'd')
+		count += print_digit((long)va_arg(ap, int), 10);
+	else if (specifier == 'i')
+		count += print_digit((long)va_arg(ap, int), 10);
+	else if (specifier == 'x')
+		count += print_digit((long)va_arg(ap, unsigned int), 16);
+	else if (specifier == 'X')
+		count += print_digit_maj((long)va_arg(ap, unsigned int), 16);
+	else if (specifier == 'u')
+		count += print_digit((long)va_arg(ap, unsigned int), 10);
+	else if (specifier == 'p')
+		count += print_pointer(va_arg(ap, unsigned long long));
+	else if (specifier == '%')
+		count += write(1, "%", 1);
+	return (count);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		printlen;
+	int		count;
 
-	va_start(ap, str);
-	printlen = 0;
-	while (*str)
+	va_start(ap, format);
+	count = 0;
+	while (*format != '\0')
 	{
-		if (*str == '%')
-		{
-			printlen += ft_find_format(*(str + 1), ap);
-			str++;
-		}
+		if (*format == '%')
+			count += print_format(*(++format), ap);
 		else
-			printlen += ft_putchar(*str);
-		str++;
+			count += write(1, format, 1);
+		++format;
 	}
 	va_end(ap);
-	return (printlen);
+	return (count);
 }

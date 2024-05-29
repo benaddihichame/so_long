@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 17:29:22 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/18 17:32:17 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/12 18:00:50 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/12 18:11:23 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		ft_putchar_fd(*s, fd);
-		s++;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	ft_putchar_fd('\n', fd);
-	return ;
+	write(fd, "\n", 1);
 }
+
+/*int	main(void)
+{
+	ft_putendl_fd("banane",1);
+	return(0);
+}*/

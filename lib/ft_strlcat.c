@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 15:28:59 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/23 18:08:43 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/06 21:03:26 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/16 18:57:59 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,21 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	j;
+	size_t	src_len;
+	size_t	dst_len;
 
-	i = 0;
-	while (i < size && *dst)
+	src_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	if (dst_len >= size)
+		dst_len = size;
+	if (dst_len == size)
+		return (size + src_len);
+	if (src_len < size - dst_len)
+		ft_memcpy(dst + dst_len, src, src_len + 1);
+	else
 	{
-		dst++;
-		i++;
+		ft_memcpy(dst + dst_len, src, size - dst_len - 1);
+		dst[size - 1] = '\0';
 	}
-	if (i == size)
-		return (i + ft_strlen(src));
-	j = 0;
-	while (src[j])
-	{
-		if (j < size - i - 1)
-		{
-			*dst++ = src[j];
-		}
-		j++;
-	}
-	*dst = 0;
-	return (i + j);
+	return (dst_len + src_len);
 }

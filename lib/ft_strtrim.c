@@ -3,51 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 12:57:43 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/20 14:04:56 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/17 15:48:52 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/17 18:03:32 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-
-static int	is_a_sep(char const *set, char c)
-{
-	while (*set)
-	{
-		if (*set == c)
-			return (1);
-		set++;
-	}
-	return (0);
-}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	size;
-	char	*ns;
-	size_t	i;
+	char	*trimmed_str;
+	size_t	start;
+	size_t	end;
 
-	if (!s1)
+	if (!s1 || !set)
 		return (NULL);
-	size = 0;
-	while (is_a_sep(set, *s1))
-		s1++;
-	while (*s1++)
-		size++;
-	while (size > 0 && is_a_sep(set, *(s1 - 2)))
-	{
-		size--;
-		s1--;
-	}
-	ns = (char *)malloc(sizeof(char) * (size + 1));
-	if (!ns)
-		return (NULL);
-	i = 0;
-	while (i < (size))
-		ns[i++] = *(s1++ - (size + 1));
-	ns[i] = 0;
-	return (ns);
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	trimmed_str = ft_substr(s1, start, end - start);
+	return (trimmed_str);
 }

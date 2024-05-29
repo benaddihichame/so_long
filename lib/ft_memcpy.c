@@ -3,26 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:57:55 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/19 21:08:19 by maxborde         ###   ########.fr       */
+/*   Created: 2023/10/19 17:23:12 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/06 12:32:29 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	i;
+	unsigned char	*tmp_dst;
+	unsigned char	*tmp_src;
 
-	if (dest == NULL && src == NULL)
-		return (NULL);
-	i = 0;
-	while (i < n)
+	if (dst == NULL && src == NULL)
+		return (dst);
+	tmp_dst = (unsigned char *) dst;
+	tmp_src = (unsigned char *) src;
+	while (n > 0)
 	{
-		*(char *)(dest + i) = *(char *)(src + i);
-		i++;
+		*tmp_dst = *tmp_src;
+		tmp_dst++;
+		tmp_src++;
+		n--;
 	}
-	return (dest);
+	return (dst);
 }
+/*int	main()
+{
+    char	tmp_dst[] = "";
+    char	tmp_src[] = "Hello banane";
+    ft_memcpy(tmp_dst, tmp_src, 8);
+    printf("%s", tmp_dst);
+    return 0;
+}*/

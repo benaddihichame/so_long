@@ -3,95 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 14:53:52 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/19 15:54:12 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/14 21:45:38 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/18 20:36:38 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <strings.h>
 
-static size_t	is_a_sep(char c, char sep)
-{
-	return (c == sep);
-}
-
-static size_t	count_words(char sep, char const *str)
+static size_t	get_nb_words(char *s, char c)
 {
 	size_t	count;
 
 	count = 0;
-	while (*str)
+	while (*s)
 	{
-		if ((is_a_sep(*(str - 1), sep) || *(str - 1) == 0) && !is_a_sep(*str,
-				sep))
-			count++;
-		str++;
+		while (*s && *s == (char)c)
+			s++;
+		if (!(*s))
+			break ;
+		++count;
+		while (*s && *s != (char)c)
+			s++;
 	}
 	return (count);
 }
 
-static void	free_all(char **tab, size_t size)
+static char	*get_next_word(char **s, char c)
 {
-	while (size)
-	{
-		free(tab[size]);
-		size--;
-	}
-	free(tab);
-	return ;
+	char	*sptr;
+
+	while (**s && **s == (char)c)
+		(*s)++;
+	if (!**s)
+		return (NULL);
+	sptr = *s;
+	while (**s && **s != (char)c)
+		(*s)++;
+	return (ft_substr(sptr, 0, *s - sptr));
 }
 
-static char	*make_words(char sep, char const *str, size_t tsize, char **tab)
+static void	free_split(char **tab, size_t len)
 {
-	char	*ns;
-	size_t	size;
 	size_t	i;
 
-	size = 0;
-	while (str[size] && !is_a_sep(str[size], sep))
-		size++;
-	ns = (char *)malloc(sizeof(char) * (size + 1));
-	if (!ns)
-	{
-		free_all(tab, tsize);
-		return (NULL);
-	}
 	i = 0;
-	while (i < size)
-	{
-		ns[i] = str[i];
-		i++;
-	}
-	ns[i] = 0;
-	return (ns);
+	while (i < len)
+		free(tab[i++]);
+	free(tab);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
+	char	*ptr;
 	char	**tab;
-	size_t	tsize;
+	size_t	i;
+	size_t	tabsize;
 
-	tsize = count_words(c, s);
-	tab = (char **)malloc(sizeof(char *) * (tsize + 1));
+	ptr = (char *)s;
+	tabsize = get_nb_words((char *)s, c);
+	tab = malloc(sizeof(char *) * (tabsize + 1));
 	if (!tab)
 		return (NULL);
 	i = 0;
-	while (*s)
+	while (i < tabsize)
 	{
-		while (is_a_sep(c, *s) && *s)
-			s++;
-		if (*s)
+		tab[i] = get_next_word(&ptr, c);
+		if (!(tab[i]))
 		{
-			tab[i] = make_words(c, s, tsize, tab);
-			i++;
+			free_split(tab, i);
+			return (NULL);
 		}
-		while (!is_a_sep(c, *s) && *s)
-			s++;
+		++i;
 	}
-	tab[i] = 0;
+	tab[i] = NULL;
 	return (tab);
 }

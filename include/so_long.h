@@ -26,45 +26,43 @@
 
 typedef struct s_mlx_img
 {
-    mlx_image_t     *img;
-    mlx_texture_t   *texture;
-    mlx_image_t     *steps_count;
-}            t_mlx_img;
-
+	mlx_image_t	*img;
+	mlx_texture_t	*texture;
+	mlx_image_t	*steps_count;
+}	t_mlx_img;
 
 typedef struct s_game
 {
-    mlx_t       *mlx;
-    t_mlx_img   *tab_png;
-    char    **map;
-    int     fd;
-    char    player;
-    char    exit;
-    char    collectible;
-    int     vide;
-    int     x;
-    int     y;
-    int     step;
-    int     poke;
-    int     moove_count;
-} t_game;
+	mlx_t	*mlx;
+	t_mlx_img	*tab_png;
+	char	**map;
+	int	fd;
+	char	player;
+	char	exit;
+	char	collectible;
+	int	vide;
+	int	x;
+	int	y;
+	int	step;
+	int	poke;
+	int	moove_count;
+}	t_game;
 
-
-int is_valid(char *str);
-void get_map(char *file_name, t_game *game);
-int count_line(char *file_name);
-int verif_element(t_game *game);
-int  is_rectang(char **map);
+int	is_valid(char *str);
+void	get_map(char *file_name, t_game *game);
+int	count_line(char *file_name);
+int	verif_element(t_game *game);
+int	is_rectang(char **map);
 int	is_wall(char **map);
-void loading_png(t_game *game);
-void display(t_game *game);
-void    resize(t_game *game);
-int   error_msg(t_game game , char **av);
-void add_data(t_game *game);
-void    grab_pokeball(t_game *game , int y, int x);
-void display_background(t_game *game);
-int   basic_err(int ac , char **av);
-int all_checks(t_game *game);
-void    display_moove_count(t_game *game, int start);
+void	loading_png(t_game *game);
+void	display(t_game *game);
+void	resize(t_game *game);
+int	error_msg(t_game game, char **av);
+void	add_data(t_game *game);
+void	grab_pokeball(t_game *game, int y, int x);
+void	display_background(t_game *game);
+int	basic_err(int ac, char **av);
+int	all_checks(t_game *game);
+void	display_moove_count(t_game *game, int start);
 
 #endif

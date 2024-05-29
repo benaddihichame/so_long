@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 12:38:32 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/18 14:22:45 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/13 19:34:17 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/14 21:01:49 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,33 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*ns;
 	size_t	i;
-	size_t	size;
-	size_t	size2;
+	size_t	h;
+	char	*tmp;
 
-	size = ft_strlen(s1);
-	size2 = ft_strlen(s2);
 	i = 0;
-	ns = (char *)malloc(sizeof(char) * (size + size2 + 1));
-	if (!ns)
+	h = 0;
+	tmp = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (tmp == NULL)
 		return (NULL);
-	while (i < size)
+	while (s1[i])
 	{
-		ns[i] = s1[i];
+		tmp[i] = s1[i];
 		i++;
 	}
-	i = 0;
-	while (i < size2)
+	while (s2[h])
 	{
-		ns[i + size] = s2[i];
-		i++;
+		tmp[h + i] = s2[h];
+		h++;
 	}
-	ns[i + size] = 0;
-	return (ns);
+	tmp[h + i] = '\0';
+	return (tmp);
 }
+/*
+int	main(void)
+{
+	const char *s1 = "hello";
+	const char *s2 = "bananz";
+
+	printf("%s\n",ft_strjoin(s1,s2));
+}*/

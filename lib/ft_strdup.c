@@ -3,31 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 12:10:28 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/19 19:32:13 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/10 20:38:27 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/10 22:18:43 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
+#include <stdlib.h>
 
 char	*ft_strdup(const char *s)
 {
-	char	*ns;
-	size_t	size;
+	char	*dest;
 	size_t	i;
 
-	size = ft_strlen(s) + 1;
-	ns = (char *)malloc(sizeof(char) * size);
-	if (!ns)
+	dest = (char *) malloc(ft_strlen(s) + 1);
+	if (!dest)
 		return (NULL);
 	i = 0;
-	while (i < size)
+	while (s[i])
 	{
-		ns[i] = s[i];
+		dest[i] = s[i];
 		i++;
 	}
-	ns[i] = 0;
-	return (ns);
+	dest[i] = '\0';
+	return (dest);
 }
+/*int main(void)
+{
+    // Chaîne de caractères à dupliquer
+    const char *source = "Hello, World!";
+
+    // Appel de la fonction strdup pour dupliquer la chaîne
+    char *duplicate = strdup(source);
+
+    // Vérification si la duplication a réussi
+    if (duplicate)
+    {
+        // Affichage de la chaîne originale et de sa copie
+        printf("Original: %s\n", source);
+        printf("Duplicate: %s\n", duplicate);
+
+        // Libération de la mémoire allouée pour la copie
+        free(duplicate);
+    }
+    else
+    {
+        // Affichage en cas d'échec de l'allocation mémoire
+        printf("Memory allocation failed.\n");
+    }
+
+    return 0;
+}*/

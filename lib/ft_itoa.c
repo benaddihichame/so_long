@@ -3,61 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 15:32:41 by maxborde          #+#    #+#             */
-/*   Updated: 2023/10/27 17:57:24 by maxborde         ###   ########.fr       */
+/*   Created: 2023/11/13 19:48:35 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/11/17 19:39:26 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
-static size_t	nbrlen(int n)
+size_t	count_size(long nb)
 {
-	long	nb;
-	size_t	size;
+	size_t	i;
 
-	nb = n;
-	size = 0;
-	if (nb == 0)
-		size++;
+	i = 0;
 	if (nb < 0)
 	{
-		size++;
-		nb *= -1;
+		nb = nb * (-1);
+		i++;
 	}
-	while (nb)
+	if (nb == 0)
+		i = 1;
+	else
 	{
-		nb /= 10;
-		size++;
+		while (nb != 0)
+		{
+			nb = nb / 10;
+			i++;
+		}
 	}
-	return (size);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*ns;
-	size_t	len;
-	int		limit;
+	size_t	index;
 	long	nb;
+	char	*str;
+	int		c;
 
-	len = nbrlen(n);
-	nb = n;
-	ns = malloc(sizeof(char) * (len + 1));
-	if (!ns)
+	index = count_size((long) n);
+	str = (char *) malloc(sizeof(char) * (index + 1));
+	if (str == NULL)
 		return (NULL);
-	ns[len--] = 0;
-	limit = 0;
+	nb = (long) n;
+	c = 0;
 	if (nb < 0)
 	{
-		ns[0] = '-';
-		nb *= -1;
-		limit = 1;
+		nb = nb * (-1);
+		str[0] = '-';
+		c = 1;
 	}
-	while ((int)len >= limit)
+	str[index] = '\0';
+	while (index > (size_t) c)
 	{
-		ns[len--] = nb % 10 + 48;
-		nb /= 10;
+		str[index - 1] = nb % 10 + '0';
+		nb = nb / 10;
+		index--;
 	}
-	return (ns);
+	return (str);
 }

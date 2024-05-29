@@ -3,110 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxborde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 23:46:49 by maxborde          #+#    #+#             */
-/*   Updated: 2023/11/10 17:52:01 by maxborde         ###   ########.fr       */
+/*   Created: 2023/12/02 14:40:03 by hbenaddi          #+#    #+#             */
+/*   Updated: 2023/12/19 15:59:58 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*get_dirty_line(int fd, char *buffer)
+char	*ft_free(char *line)
 {
-	char	*dirtyline;
-	int		charsread;
-
-	charsread = 1;
-	dirtyline = NULL;
-	dirtyline = ft_strjoingnl(dirtyline, buffer);
-	while (!ft_strchrgnl(dirtyline, '\n') && charsread != 0)
-	{
-		charsread = read(fd, buffer, BUFFER_SIZE);
-		if (charsread == -1)
-		{
-			buffer[0] = 0;
-			free(dirtyline);
-			return (NULL);
-		}
-		buffer[charsread] = 0;
-		dirtyline = ft_strjoingnl(dirtyline, buffer);
-	}
-	if (!ft_strlen(dirtyline) && charsread == 0)
-	{
-		free(dirtyline);
-		return (NULL);
-	}
-	return (dirtyline);
-}
-
-char	*get_clean_line(char *remainder)
-{
-	char	*str;
-	int		i;
-	int		y;	
-
-	i = 0;
-	y = -1;
-	while (remainder[i] && remainder[i] != '\n')
-		i++;
-	if (remainder[i] == '\n')
-		i++;
-	str = malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	while (++y < i)
-		str[y] = remainder[y];
-	str[y] = 0;
-	free(remainder);
-	return (str);
-}
-
-static void	clean_up_buffer(char *buffer)
-{
-	int	k;
-	int	i;
-
-	i = 0;
-	k = 0;
-	while (buffer[i] != '\n' && buffer[i])
-		i++;
-	if (buffer[i] == '\n')
-		i++;
-	while (buffer[i])
-		buffer[k++] = buffer[i++];
-	buffer[k] = 0;
+	free(line);
+	return (NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1] = {0};
-	char		*dirtyline;
-	char		*cleanline;
+	static char	buffer[BUFFER_SIZE + 1] = {};
+	char		*line;
+	int			res_read;
 
-	dirtyline = get_dirty_line(fd, buffer);
-	if (!dirtyline)
+	line = NULL;
+	if (BUFFER_SIZE < 0 || fd < 0)
 		return (NULL);
-	cleanline = get_clean_line(dirtyline);
-	if (!cleanline)
+	if (strchr_newline(buffer))
 	{
-		free(dirtyline);
-		return (NULL);
+		ft_cut_buffer(buffer);
+		line = ft_mod_join(line, buffer);
 	}
-	clean_up_buffer(buffer);
-	return (cleanline);
+	res_read = 1;
+	while (res_read > 0 && !strchr_newline(buffer))
+	{
+		res_read = read(fd, buffer, BUFFER_SIZE);
+		if (res_read == -1)
+			return (ft_free(line));
+		if (res_read == 0)
+			return (line);
+		buffer[res_read] = '\0';
+		line = ft_mod_join(line, buffer);
+	}
+	return (line);
 }
-
-/*int	main(void)
-{
-	int fd;
-	int i;
-
-	fd = open("read_error.txt", O_RDONLY);
-	i = 1;
-	printf("String %d: |%s|\n", i, get_next_line(fd));
-	close(fd);
-	printf("String %d: |%s|\n", i, get_next_line(fd));
-	fd = open("read_error.txt", O_RDONLY);
-	printf("String %d: |%s|\n", i, get_next_line(fd));
-}*/
