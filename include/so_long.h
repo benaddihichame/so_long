@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/27 23:37:54 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:47:01 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_game
 	mlx_t	*mlx;
 	t_mlx_img	*tab_png;
 	char	**map;
+	char	**map2;
 	int	fd;
 	char	player;
 	char	exit;
@@ -64,5 +65,8 @@ void	display_background(t_game *game);
 int	basic_err(int ac, char **av);
 int	all_checks(t_game *game);
 void	display_moove_count(t_game *game, int start);
+void    back_tracking(t_game *game, int x, int y);
+int back_tracking2(t_game *game);
+
 
 #endif

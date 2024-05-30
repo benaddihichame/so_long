@@ -1,2 +1,3 @@
 backtraking check si le perso peut sortir 
 faire animation
+check si enemie block

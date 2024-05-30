@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/25 21:41:36 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:17:40 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ int all_checks(t_game *game)
         ft_printf("\033[31;5mError : The Map is not Rectangle\033[0m\n");
         return 0;
     }
+    back_tracking(game, game->x, game->y);
+    if (back_tracking2(game) == 0)
+        return (0);
     return 1;
 }

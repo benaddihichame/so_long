@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/24 17:51:45 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:39:14 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,34 @@ int	is_wall(char **map)
         j++;
 	}
 	return (TRUE);
+}
+void    back_tracking(t_game *game, int x, int y)
+{
+    if (game->map2[x][y] == 'C' &&  game->map2[x][y] == 'E' && game->map2[x][y] == 'P' && game->map2[x][y]== '0')
+    game->map2[x][y] = '9';
+    back_tracking(game, x + 1, y);
+    back_tracking(game, x - 1, y);
+    back_tracking(game, x, y + 1);
+    back_tracking(game, x, y - 1);
+}
+
+int back_tracking2(t_game *game)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (game->map2[i] != NULL)
+    {
+        j = 0;
+        while (game->map2[i][j])
+        {
+            if (game->map2[i][j] == 'C' || game->map2[i][j] == 'E'\
+             || game->map2[i][j] == 'P' || game->map2[i][j] == '0')
+                return (1);
+            j++;
+        }
+        i++;
+    }
+    return (0);
 }
