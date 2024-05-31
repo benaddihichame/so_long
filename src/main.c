@@ -6,13 +6,13 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/27 23:38:34 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:52:06 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	init_var(t_game *game)
+void	init_var(t_game *game, char **av)
 {
     // int i = 0;
 	game->map = NULL;
@@ -21,6 +21,7 @@ void	init_var(t_game *game)
 	game->collectible = 0;
 	game->vide = 0;
     game->step = 0;
+    game->filename = av[1];
     // while (i < 6)
     // {
     //     game->tab_png[i].texture = NULL;
@@ -91,7 +92,7 @@ int main(int ac, char **av)
 
     if (basic_err(ac, av) != 1)
         return (0);
-    init_var(&game);
+    init_var(&game, av);
     get_map(av[1], &game);
     if (all_checks(&game) != 1)
         return (0);

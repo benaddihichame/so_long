@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/31 04:02:03 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:55:01 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,29 @@ int	is_wall(char **map)
 	}
 	return (TRUE);
 }
+
+int ftstrleun(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
+}
 void    back_tracking(t_game *game, int x, int y)
 {
-    if (game->map2[x][y] == 'C' ||  game->map2[x][y] || 'E' \
-     && game->map2[x][y] || 'P' && game->map2[x][y] == '0')
-        return ;
-    game->map2[x][y] = '9';
-    back_tracking(game, x + 1, y);
-    back_tracking(game, x - 1, y);
-    back_tracking(game, x, y + 1);
-    back_tracking(game, x, y - 1);
+    // if (x < 0 || y < 0 || game->map2[y][x] == '1' || game->map2[y][x] == '9')
+    //     return ;
+    if (game->map2[y][x] == 'C' || game->map2[y][x] == 'E' || game->map2[y][x] == '0' || game->map2[y][x] == 'P')
+    {
+        game->map2[y][x] = '9';
+        back_tracking(game, x + 1, y);
+        back_tracking(game, x - 1, y);
+        back_tracking(game, x, y + 1);
+        back_tracking(game, x, y - 1);
+    }
 }
-
 int back_tracking2(t_game *game)
 {
     int i;
@@ -122,10 +133,10 @@ int back_tracking2(t_game *game)
         {
             if (game->map2[i][j] == 'C' || game->map2[i][j] == 'E'\
              || game->map2[i][j] == 'P' || game->map2[i][j] == '0')
-                return (1);
+                return (0);
             j++;
         }
         i++;
     }
-    return (0);
+    return (1);
 }

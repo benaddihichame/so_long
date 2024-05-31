@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/31 04:49:37 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:46:24 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,20 @@ void    copy_map(t_game *game)
     int i;
 
     i = 0;
-    game->map2 = malloc(sizeof(char *) * (count_line(game->map) + 1));
+    game->map2 = malloc(sizeof(char *) * (count_line(game->filename) + 1));
+    if (game->map2 == NULL)
+    {
+        perror("Error malloc");
+        return;
+    }
     while (game->map[i])
     {
         game->map2[i] = strdup(game->map[i]);
+        if (game->map2[i] == NULL)
+        {
+            perror("Error strdup");
+            return;
+        }
         i++;
     }
     game->map2[i] = NULL;
