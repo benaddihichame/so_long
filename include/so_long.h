@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/30 15:47:01 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/31 04:50:10 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	all_checks(t_game *game);
 void	display_moove_count(t_game *game, int start);
 void    back_tracking(t_game *game, int x, int y);
 int back_tracking2(t_game *game);
+void    copy_map(t_game *game);
 
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/05/30 15:39:14 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/05/31 04:02:03 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ int	is_wall(char **map)
 }
 void    back_tracking(t_game *game, int x, int y)
 {
-    if (game->map2[x][y] == 'C' &&  game->map2[x][y] == 'E' && game->map2[x][y] == 'P' && game->map2[x][y]== '0')
+    if (game->map2[x][y] == 'C' ||  game->map2[x][y] || 'E' \
+     && game->map2[x][y] || 'P' && game->map2[x][y] == '0')
+        return ;
     game->map2[x][y] = '9';
     back_tracking(game, x + 1, y);
     back_tracking(game, x - 1, y);
