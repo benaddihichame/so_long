@@ -66,9 +66,10 @@ void	display_background(t_game *game);
 int	basic_err(int ac, char **av);
 int	all_checks(t_game *game);
 void	display_moove_count(t_game *game, int start);
-void    back_tracking(t_game *game, int x, int y);
-int back_tracking2(t_game *game);
-void    copy_map(t_game *game);
+void	back_tracking(t_game *game, int x, int y);
+int	back_tracking2(t_game *game);
+void	copy_map(t_game *game);
+void	txt_err(t_game *game);
 
 
 #endif

@@ -8,6 +8,9 @@
         "stdlib.h": "c",
         "unistd.h": "c",
         "string.h": "c",
-        "so_long": "c"
-    }
+        "so_long": "c",
+    },
+    "[c]": {
+        "editor.defaultFormatter": "keyhr.42-c-format"
+    } 
 }

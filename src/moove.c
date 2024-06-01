@@ -12,31 +12,33 @@
 
 #include "../include/so_long.h"
 
-void add_data(t_game *game)
+void	add_data(t_game *game)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    game->poke = 0;
-    i = 0;
-    while (game->map[i] != NULL)
-    {
-        j = 0;
-        while (game->map[i][j])
-        {  
-            if (game->map[i][j] == 'C')
-                game->poke++;
-            j++;
-        }
-        i++;
-    }
+	game->poke = 0;
+	i = 0;
+	while (game->map[i] != NULL)
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'C')
+				game->poke++;
+			j++;
+		}
+		i++;
+	}
 }
-void    grab_pokeball(t_game *game , int x, int y)
+
+void	grab_pokeball(t_game *game, int x, int y)
 {
-    if (game->map[y][x] == 'C')
-    {
-        game->map[y][x] = '0';
-        game->poke--;
-        mlx_image_to_window(game->mlx, game->tab_png[0].img, x * PIXEL , y * PIXEL);
-    }
+	if (game->map[y][x] == 'C')
+	{
+		game->map[y][x] = '0';
+		game->poke--;
+		mlx_image_to_window(game->mlx, game->tab_png[0].img, \
+		x * PIXEL, y * PIXEL);
+	}
 }
