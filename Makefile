@@ -1,64 +1,43 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/29 14:13:54 by hbenaddi          #+#    #+#              #
-#    Updated: 2024/05/29 14:13:55 by hbenaddi         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-OBJECTS = \
-	src/main.o \
-	src/get_map.o \
-	src/check_ext.o \
-	src/check_map.o \
-	src/affichage.o \
-	src/moove.o \
-	src/err.o
-
-LIBFT = lib/libft.a
-
-banner:
-
-	@echo "\n"
-	@echo "\033[0;35m⏳ Files are being compiled. ⏳\033[0m  \n"
-	@echo "\033[0;35m██╗  ██╗██╗ ██████╗██╗  ██╗ ██████╗ ███╗   ███╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗\033[0m"
-	@echo "\033[0;35m██║  ██║██║██╔════╝██║  ██║██╔═══██╗████╗ ████║██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝\033[0m"
-	@echo "\033[0;35m███████║██║██║     ███████║██║   ██║██╔████╔██║█████╗      ██║  ███╗███████║██╔████╔██║█████╗  \033[0m"
-	@echo "\033[0;35m██╔══██║██║██║     ██╔══██║██║   ██║██║╚██╔╝██║██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  \033[0m"
-	@echo "\033[0;35m██║  ██║██║╚██████╗██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\033[0m"
-	@echo "\033[0;35m╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\033[0m"
-	@echo "\n"
-	@sleep 1
-
+# Variables
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -Iinclude -Imlx42/include/MLX42 -g
 LFLAGS = -Llib -lft -lmlx42 -ldl -lglfw
-
 NAME = so_long
+SRC_DIR = src
+OBJ_DIR = obj
 
-all: banner $(NAME)
+# Fichiers sources et objets
+SRCS = $(SRC_DIR)/affichage.c $(SRC_DIR)/check_ext.c $(SRC_DIR)/check_map.c $(SRC_DIR)/err.c $(SRC_DIR)/get_map.c $(SRC_DIR)/main.c $(SRC_DIR)/moove.c # Ajoutez tous vos fichiers source ici
+OBJS = $(OBJ_DIR)/affichage.o $(OBJ_DIR)/check_ext.o $(OBJ_DIR)/check_map.o $(OBJ_DIR)/err.o $(OBJ_DIR)/get_map.o $(OBJ_DIR)/main.o $(OBJ_DIR)/moove.o # Correspondance des fichiers objets
 
-$(NAME): $(OBJECTS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME) $(LFLAGS) 
+LIBFT_DIR = lib
+LIBFT = $(LIBFT_DIR)/libft.a
 
-$(LIBFT):
-	$(MAKE) -C lib
+# Règles
+all: $(NAME)
 
-%.o: %.c
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
-	$(MAKE) clean -C lib
-	rm -f $(OBJECTS)
+# Règle pour construire libft
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
+# Nettoyage des fichiers objets
+clean:
+	$(MAKE) -C $(LIBFT_DIR) clean
+	rm -f $(OBJS)
+
+# Nettoyage complet
 fclean: clean
-	$(MAKE) fclean -C lib
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
+# Reconstruire entièrement
 re: fclean all
 
 .PHONY: all clean fclean re
