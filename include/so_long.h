@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/05/31 20:54:38 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:41:18 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ void	back_tracking(t_game *game, int x, int y);
 int	back_tracking2(t_game *game);
 void	copy_map(t_game *game);
 void	txt_err(t_game *game);
-
+void	event_listener(mlx_key_data_t keydata, void* param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/01 19:04:07 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:06:05 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,22 @@ void	txt_err(t_game *game)
 		return ;
 	}
 }
+/*
+char    *ft_strdup(char *src)
+{
+	int	i;
+	char	*cpy;
+
+	cpy = malloc(sizeof(char) * ft_strlen(src) + 1);
+	if (cpy != NULL)
+	{
+		while (src[i])
+		{
+			cpy[i] = src[i];
+			i++;
+		}
+	cpy[i] = '\0';
+	}
+	return (cpy);
+}
+*/

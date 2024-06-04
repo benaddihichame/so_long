@@ -1,5 +1,1 @@
-backtraking check si le perso peut sortir 
-faire animation
-check si enemie block
-code strdup
-le backtraking ne marche pas lorsaue une zone est inaccesible meme si y allez est inutile
+code FT_STRDUP

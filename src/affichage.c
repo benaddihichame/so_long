@@ -57,7 +57,7 @@ void	display_background(t_game *game)
 		j = -1;
 		while (game->map[i][++j] != '\0')
 			mlx_image_to_window(game->mlx, game->tab_png[0].img,\
-			 j * PIXEL, i * PIXEL);
+				j * PIXEL, i * PIXEL);
 	}
 }
 
