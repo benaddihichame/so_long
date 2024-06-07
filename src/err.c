@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 16:00:55 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:14:16 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,20 @@ void free_map(char **map)
     }
     free(map);
 }
+void	free_resources(t_game *game)
+{
+    int i;
+	
+	i = 0;
+    while (i < 6)
+    {
+        if (game->tab_png[i].img != NULL)
+            mlx_delete_image(game->mlx, game->tab_png[i].img);
+    	i++;
+	}
+    mlx_terminate(game->mlx);
+}
+
 /*
 char    *ft_strdup(char *src)
 {

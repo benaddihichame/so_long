@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 15:57:36 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:10:00 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	main(int ac, char **av)
 	mlx_key_hook(game.mlx, event_listener, &game);
 	display(&game);
 	mlx_loop(game.mlx);
+    free_resources(&game);
     free_map(game.map);
     free_map(game.map2);
 	return (1);
