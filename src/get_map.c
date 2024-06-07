@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 00:24:06 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:30:18 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	get_map(char *file_name, t_game *game)
 		game->map[i] = line;
 		i++;
 	}
+	if (line != NULL)
+		free(line);
 	close(fd);
 	game->map[i] = NULL;
 }
@@ -72,6 +74,7 @@ void	copy_map(t_game *game)
 	if (game->map2 == NULL)
 	{
 		perror("Error malloc");
+		free_map(game->map2);
 		return ;
 	}
 	while (game->map[i])

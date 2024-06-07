@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 17:14:16 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:41:16 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	all_checks(t_game *game)
 		ft_printf("Error : There is no good PATH in the map\n");
 		return (0);
 	}
-	free_map(game->map2);
 	return (1);
 }
 

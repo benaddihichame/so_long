@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 17:10:00 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:55:11 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	event_listener(mlx_key_data_t keydata, void* param)
 
     if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
     {
+        free_map(game->map);
+        free_map(game->map2);
         mlx_close_window(game->mlx);
         return;
     }
@@ -62,6 +64,8 @@ void	event_listener(mlx_key_data_t keydata, void* param)
     if (game->map[new_y][new_x] == 'T')
     {
         mlx_close_window(game->mlx);
+        free_map(game->map);
+        free_map(game->map2);
         ft_printf("You GET CAPTURED!\n");
         return ;
     }
@@ -71,8 +75,11 @@ void	event_listener(mlx_key_data_t keydata, void* param)
     // Si le joueur se déplace sur la porte de sortie et tous les collectibles sont ramassés
     else if (game->map[new_y][new_x] == 'E' && game->poke == 0)
     {
+        free_map(game->map);
+        free_map(game->map2);
         mlx_close_window(game->mlx);
         ft_printf("You exited the map!\n");
+        return ;
     }
     // Mettre à jour les coordonnées du joueur
     game->x = new_x;
@@ -94,8 +101,12 @@ int	main(int ac, char **av)
 	init_var(&game, av);
 	get_map(av[1], &game);
 	if (all_checks(&game) != 1)
+    {
+        free_map(game.map);
+        free_map(game.map2);
 		return (0);
-	add_data(&game);
+    }
+    add_data(&game);
 	game.mlx = mlx_init((ft_strlen(game.map[0]) * 32), \
 	(count_line(av[1]) * 32), "so_long", true);
 	if (!game.mlx)
