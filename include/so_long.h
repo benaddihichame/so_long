@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/06/04 15:41:18 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 00:13:06 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_mlx_img
 typedef struct s_game
 {
 	mlx_t	*mlx;
-	t_mlx_img	*tab_png;
+	t_mlx_img	tab_png[6];
 	char	**map;
 	char	**map2;
 	int	fd;
@@ -71,5 +71,6 @@ int	back_tracking2(t_game *game);
 void	copy_map(t_game *game);
 void	txt_err(t_game *game);
 void	event_listener(mlx_key_data_t keydata, void* param);
+void free_map(char **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/04 13:06:05 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:00:55 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	all_checks(t_game *game)
 	}
 	if (is_rectang(game->map) == FALSE)
 	{
-		ft_printf(\
-		"\033[31;5mError : The Map is not Rectangle\033[0m\n");
+		ft_printf("\033[31;5mError : The Map not Rectangle\033[0m\n");
 		return (0);
 	}
 	copy_map(game);
@@ -53,6 +52,7 @@ int	all_checks(t_game *game)
 		ft_printf("Error : There is no good PATH in the map\n");
 		return (0);
 	}
+	free_map(game->map2);
 	return (1);
 }
 
@@ -65,6 +65,20 @@ void	txt_err(t_game *game)
 		ft_printf("Error: loading texture\n");
 		return ;
 	}
+}
+void free_map(char **map)
+{
+    int i;
+
+    if (map == NULL)
+        return;
+    i = 0;
+    while (map[i] != NULL)
+    {
+        free(map[i]);
+        i++;
+    }
+    free(map);
 }
 /*
 char    *ft_strdup(char *src)

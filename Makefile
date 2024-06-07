@@ -1,6 +1,6 @@
 # Variables
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -Iinclude -Imlx42/include/MLX42 -g
+CFLAGS = -Wall -Werror -Wextra -Iinclude -Imlx42/include/MLX42 -g3
 LFLAGS = -Llib -lft -lmlx42 -ldl -lglfw
 NAME = so_long
 SRC_DIR = src

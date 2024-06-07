@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/04 12:35:15 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 00:24:06 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	count_line(char *file_name)
 	int		fd;
 	int		i;
 	char	*line;
-	char	**input;
+	//char	**input;
 
 	i = 0;
 	fd = open(file_name, O_RDONLY);
@@ -26,14 +26,14 @@ int	count_line(char *file_name)
 		perror("Error fd");
 		return (1);
 	}
-	input = malloc(sizeof(char *) * 100);
+	//input = malloc(sizeof(char *) * 100);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		input[i] = strdup(line);
+		//input[i] = strdup(line);
 		i++;
 		free(line);
 	}
-	input[i] = NULL;
+	//input[i] = NULL;
 	close(fd);
 	return (i);
 }
@@ -49,6 +49,7 @@ void	get_map(char *file_name, t_game *game)
 	if (game->map == NULL)
 	{
 		ft_printf("Error malloc");
+		free_map(game->map);
 		return ;
 	}
 	fd = open(file_name, O_RDONLY);
@@ -79,6 +80,7 @@ void	copy_map(t_game *game)
 		if (game->map2[i] == NULL)
 		{
 			perror("Error strdup");
+			free_map(game->map2);
 			return ;
 		}
 		i++;

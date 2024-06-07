@@ -6,36 +6,36 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:12:52 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/04 15:34:29 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:55:18 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	handle_key_escape(t_game *game)
-{
-	mlx_close_window(game->mlx);
-}
+// void	handle_key_escape(t_game *game)
+// {
+// 	mlx_close_window(game->mlx);
+// }
 
-void	move_up(t_game *game)
-{
-	game->y--;
-}
+// void	move_up(t_game *game)
+// {
+// 	game->y--;
+// }
 
-void	move_down(t_game *game)
-{
-	game->y++;
-}
+// void	move_down(t_game *game)
+// {
+// 	game->y++;
+// }
 
-void	move_left(t_game *game)
-{
-	game->x--;
-}
+// void	move_left(t_game *game)
+// {
+// 	game->x--;
+// }
 
-void	move_right(t_game *game)
-{
-	game->x++;
-}
+// void	move_right(t_game *game)
+// {
+// 	game->x++;
+// }
 // void	event_listener(mlx_key_data_t keydata, void* param)
 // {
 //     t_game *game;

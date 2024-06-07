@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:47:18 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/01 22:01:07 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:17:57 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	loading_png(t_game *game)
 	int	i;
 
 	i = 0;
-	game->tab_png = ft_calloc(7, sizeof(t_mlx_img));
 	game->tab_png[0].texture = mlx_load_png("./image/grass.png");
 	game->tab_png[1].texture = mlx_load_png("./image/pokeball.png");
 	game->tab_png[2].texture = mlx_load_png("./image/arbre.png");
@@ -53,10 +52,10 @@ void	display_background(t_game *game)
 
 	i = -1;
 	while (game->map[++i])
-	{ 
+	{
 		j = -1;
 		while (game->map[i][++j] != '\0')
-			mlx_image_to_window(game->mlx, game->tab_png[0].img,\
+			mlx_image_to_window(game->mlx, game->tab_png[0].img, \
 				j * PIXEL, i * PIXEL);
 	}
 }
@@ -69,12 +68,13 @@ void	display(t_game *game)
 	i = -1;
 	display_background(game);
 	while (game->map[++i])
-	{ 
+	{
 		j = -1;
 		while (game->map[i][++j] != '\0')
 		{
 			if (game->x == j && game->y == i)
-				mlx_image_to_window(game->mlx, game->tab_png[3].img, j * 32, i * 32);
+				mlx_image_to_window(game->mlx, game->tab_png[3].img, \
+				j * 32, i * 32);
 			else if (game->map[i][j] == 'C')
 				mlx_image_to_window(game->mlx, game->tab_png[1].img, \
 				j * PIXEL, i * PIXEL);
@@ -109,7 +109,8 @@ void	display_moove_count(t_game *game, int start)
 	if (!start)
 	{
 		mlx_delete_image(game->mlx, game->tab_png->steps_count);
-		game->tab_png->steps_count = mlx_put_string(game->mlx, move_str, 30, 10);
+		game->tab_png->steps_count = mlx_put_string(game->mlx, \
+		move_str, 30, 10);
 		free(move_str);
 	}
 }
