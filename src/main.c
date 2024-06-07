@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 18:55:11 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/07 23:29:35 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	init_var(t_game *game, char **av)
 {
     int i = 0;
 	game->map = NULL;
+    game->map2 = NULL;
 	game->player = 0;
 	game->exit = 0;
 	game->collectible = 0;
 	game->vide = 0;
 	game->step = 0;
+    game->moove_count = 0;
 	game->filename = av[1];
     while (i < 6)
     {
@@ -121,7 +123,5 @@ int	main(int ac, char **av)
 	display(&game);
 	mlx_loop(game.mlx);
     free_resources(&game);
-    free_map(game.map);
-    free_map(game.map2);
 	return (1);
 }
