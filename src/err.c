@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/08 17:17:01 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 18:12:51 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	all_checks(t_game *game)
 		ft_printf("Error : There is no good PATH in the map\n");
 		return (0);
 	}
+	free_map(game->map2);
 	return (1);
 }
 
@@ -81,31 +82,3 @@ void	free_img(t_game *game)
     	i++;
 	}
 }
-void	free_ressource(t_game *game)
-{
-	free_img(game);
-	if (game->mlx)
-		mlx_terminate(game->mlx);
-	free_map(game->map);
-	free_map(game->map2);
-	free(game->tab_png->steps_count);
-}
-/*
-char    *ft_strdup(char *src)
-{
-	int	i;
-	char	*cpy;
-
-	cpy = malloc(sizeof(char) * ft_strlen(src) + 1);
-	if (cpy != NULL)
-	{
-		while (src[i])
-		{
-			cpy[i] = src[i];
-			i++;
-		}
-	cpy[i] = '\0';
-	}
-	return (cpy);
-}
-*/

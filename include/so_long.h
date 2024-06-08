@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/06/08 16:14:56 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 18:00:43 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_game
 	t_mlx_img	tab_png[6];
 	char	**map;
 	char	**map2;
-	int	fd;
 	char	player;
 	char	exit;
 	char	collectible;
@@ -73,6 +72,5 @@ void	txt_err(t_game *game);
 void	event_listener(mlx_key_data_t keydata, void* param);
 void free_map(char **map);
 void	free_img(t_game *game);
-void	free_ressource(t_game *game);
 
 #endif
