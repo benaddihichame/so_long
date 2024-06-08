@@ -7,8 +7,8 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Fichiers sources et objets
-SRCS = $(SRC_DIR)/affichage.c $(SRC_DIR)/check_ext.c $(SRC_DIR)/check_map.c $(SRC_DIR)/err.c $(SRC_DIR)/get_map.c $(SRC_DIR)/main.c $(SRC_DIR)/moove.c # Ajoutez tous vos fichiers source ici
-OBJS = $(OBJ_DIR)/affichage.o $(OBJ_DIR)/check_ext.o $(OBJ_DIR)/check_map.o $(OBJ_DIR)/err.o $(OBJ_DIR)/get_map.o $(OBJ_DIR)/main.o $(OBJ_DIR)/moove.o  # Correspondance des fichiers objets
+SRCS = $(SRC_DIR)/affichage.c $(SRC_DIR)/check_ext.c $(SRC_DIR)/check_map.c $(SRC_DIR)/err.c $(SRC_DIR)/get_map.c $(SRC_DIR)/main.c $(SRC_DIR)/moove.c $(SRC_DIR)/back_track.c $(SRC_DIR)/loading_texture.c $(SRC_DIR)/event.c $(SRC_DIR)/verif_map.c# Ajoutez tous vos fichiers source ici
+OBJS = $(OBJ_DIR)/affichage.o $(OBJ_DIR)/check_ext.o $(OBJ_DIR)/check_map.o $(OBJ_DIR)/err.o $(OBJ_DIR)/get_map.o $(OBJ_DIR)/main.o $(OBJ_DIR)/moove.o $(OBJ_DIR)/back_track.o $(OBJ_DIR)/loading_texture.o $(OBJ_DIR)/event.o $(OBJ_DIR)/verif_map.o# Correspondance des fichiers objets
 
 LIBFT_DIR = lib
 LIBFT = $(LIBFT_DIR)/libft.a

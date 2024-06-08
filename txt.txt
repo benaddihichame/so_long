@@ -1,0 +1,3 @@
+gerer leak quand on ferme avec la croix 
+voir si c bourbier de faire bouger enemie et animation 
+
