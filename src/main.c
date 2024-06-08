@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 23:29:35 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 16:47:48 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_var(t_game *game, char **av)
 	game->step = 0;
     game->moove_count = 0;
 	game->filename = av[1];
+    game->tab_png->steps_count = 0;
     while (i < 6)
     {
         game->tab_png[i].texture = NULL;
@@ -42,9 +43,8 @@ void	event_listener(mlx_key_data_t keydata, void* param)
 
     if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
     {
-        free_map(game->map);
-        free_map(game->map2);
         mlx_close_window(game->mlx);
+        //free_ressource(game);
         return;
     }
     if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE && game->map[y - 1][x] != '1')
@@ -104,8 +104,7 @@ int	main(int ac, char **av)
 	get_map(av[1], &game);
 	if (all_checks(&game) != 1)
     {
-        free_map(game.map);
-        free_map(game.map2);
+        free_ressource(&game);
 		return (0);
     }
     add_data(&game);
@@ -113,8 +112,7 @@ int	main(int ac, char **av)
 	(count_line(av[1]) * 32), "so_long", true);
 	if (!game.mlx)
     {
-        free_map(game.map);
-        free_map(game.map2);
+        free_ressource(&game);
 		return (0);
     }
     loading_png(&game);
@@ -122,6 +120,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(game.mlx, event_listener, &game);
 	display(&game);
 	mlx_loop(game.mlx);
-    free_resources(&game);
+    free_ressource(&game);
 	return (1);
 }

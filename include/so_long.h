@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:05:11 by maxborde          #+#    #+#             */
-/*   Updated: 2024/06/07 23:29:35 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 16:14:56 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	copy_map(t_game *game);
 void	txt_err(t_game *game);
 void	event_listener(mlx_key_data_t keydata, void* param);
 void free_map(char **map);
-void	free_resources(t_game *game);
+void	free_img(t_game *game);
+void	free_ressource(t_game *game);
 
 #endif

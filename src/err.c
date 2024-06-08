@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 17:41:16 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 16:14:43 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void free_map(char **map)
     }
     free(map);
 }
-void	free_resources(t_game *game)
+void	free_img(t_game *game)
 {
     int i;
 	
@@ -90,9 +90,16 @@ void	free_resources(t_game *game)
             mlx_delete_image(game->mlx, game->tab_png[i].img);
     	i++;
 	}
-    mlx_terminate(game->mlx);
 }
-
+void	free_ressource(t_game *game)
+{
+	free_img(game);
+	if (game->mlx)
+		mlx_terminate(game->mlx);
+	free_map(game->map);
+	free_map(game->map2);
+	free(game->tab_png->steps_count);
+}
 /*
 char    *ft_strdup(char *src)
 {
