@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/08 18:36:52 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 19:30:33 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(game.mlx, event_listener, &game);
 	display(&game);
 	mlx_loop(game.mlx);
-	free_img(&game);
+	mlx_terminate(game.mlx);
     return (1);
 }
