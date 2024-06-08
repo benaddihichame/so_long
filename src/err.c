@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 21:41:09 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/08 16:14:43 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:17:01 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,6 @@ int	all_checks(t_game *game)
 	return (1);
 }
 
-void	txt_err(t_game *game)
-{
-	if (game->tab_png[0].texture == NULL || game->tab_png[1].texture == NULL \
-	|| game->tab_png[2].texture == NULL || game->tab_png[3].texture == NULL \
-	|| game->tab_png[4].texture == NULL || game->tab_png[5].texture == NULL)
-	{
-		ft_printf("Error: loading texture\n");
-		return ;
-	}
-}
 void free_map(char **map)
 {
     int i;

@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:55:16 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/08 16:47:48 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:18:39 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	init_var(t_game *game, char **av)
+void init_var(t_game *game, char **av)
 {
-    int i = 0;
-	game->map = NULL;
+    int i;
+
+    i = 0;
+    game->map = NULL;
     game->map2 = NULL;
-	game->player = 0;
-	game->exit = 0;
-	game->collectible = 0;
-	game->vide = 0;
-	game->step = 0;
+    game->player = 0;
+    game->exit = 0;
+    game->collectible = 0;
+    game->vide = 0;
+    game->step = 0;
     game->moove_count = 0;
-	game->filename = av[1];
+    game->filename = av[1];
     game->tab_png->steps_count = 0;
     while (i < 6)
     {
@@ -32,6 +34,7 @@ void	init_var(t_game *game, char **av)
         i++;
     }
 }
+
 void	event_listener(mlx_key_data_t keydata, void* param)
 {
     t_game *game;

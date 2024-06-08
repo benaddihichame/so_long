@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenaddi <hbenaddi@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:52:32 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/07 17:30:18 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:16:56 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,48 @@ void	get_map(char *file_name, t_game *game)
 	game->map[i] = NULL;
 }
 
+void get_map(char *file_name, t_game *game)
+{
+    int fd;
+    int i;
+    char *line;
+    int line_count;
+
+    i = 0;
+    line_count = count_line(file_name);
+    game->map = malloc((line_count + 1) * sizeof(char *));
+    if (game->map == NULL)
+    {
+        ft_printf("Error malloc\n");
+        return;
+    }
+    fd = open(file_name, O_RDONLY);
+    if (fd == -1)
+    {
+        perror("Error opening file");
+        free(game->map);
+        game->map = NULL; // Éviter une double libération
+        return;
+    }
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        line[ft_strlen(line) - 1] = 0;
+        game->map[i] = strdup(line);
+        if (game->map[i] == NULL)
+        {
+            ft_printf("Error strdup\n");
+            free_map(game->map);
+            close(fd);
+            return;
+        }
+        i++;
+    }
+    if (line != NULL)
+        free(line);
+    game->map[i] = NULL;
+    close(fd);
+}
+
 void	copy_map(t_game *game)
 {
 	int	i;
@@ -74,7 +116,6 @@ void	copy_map(t_game *game)
 	if (game->map2 == NULL)
 	{
 		perror("Error malloc");
-		free_map(game->map2);
 		return ;
 	}
 	while (game->map[i])
