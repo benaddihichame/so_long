@@ -56,29 +56,30 @@ int	all_checks(t_game *game)
 	return (1);
 }
 
-void free_map(char **map)
+void	free_map(char **map)
 {
-    int i;
+	int	i;
 
-    if (map == NULL)
-        return;
-    i = 0;
-    while (map[i] != NULL)
-    {
-        free(map[i]);
-        i++;
-    }
-    free(map);
+	if (map == NULL)
+		return ;
+	i = 0;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }
+
 void	free_img(t_game *game)
 {
-    int i;
-	
+	int	i;
+
 	i = 0;
-    while (i < 6)
-    {
-        if (game->tab_png[i].img != NULL)
-            mlx_delete_image(game->mlx, game->tab_png[i].img);
-    	i++;
+	while (i < 6)
+	{
+		if (game->tab_png[i].img != NULL)
+			mlx_delete_image(game->mlx, game->tab_png[i].img);
+		i++;
 	}
 }

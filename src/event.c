@@ -26,16 +26,19 @@ static void	handle_movement(t_game *game, int new_x, int new_y)
 	game->step++;
 	game->moove_count++;
 	ft_printf("You moved: %d Time\n", game->step);
-	mlx_image_to_window(game->mlx, game->tab_png[3].img, new_x * PIXEL, new_y * PIXEL);
+	mlx_image_to_window(game->mlx, game->tab_png[3].img, \
+	new_x * PIXEL, new_y * PIXEL);
 	display_moove_count(game, 0);
 }
 
 static void	update_player_position(t_game *game, int x, int y)
 {
 	if (game->map[y][x] == 'E')
-		mlx_image_to_window(game->mlx, game->tab_png[4].img, x * PIXEL, y * PIXEL);
+		mlx_image_to_window(game->mlx, game->tab_png[4].img, \
+		x * PIXEL, y * PIXEL);
 	else
-		mlx_image_to_window(game->mlx, game->tab_png[0].img, x * PIXEL, y * PIXEL);
+		mlx_image_to_window(game->mlx, game->tab_png[0].img, \
+		x * PIXEL, y * PIXEL);
 }
 
 static int	check_new_position(t_game *game, int new_x, int new_y)
@@ -68,13 +71,17 @@ void	event_listener(mlx_key_data_t keydata, void *param)
 	new_x = game->x;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
 		return (close_and_free(game));
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE && game->map[game->y - 1][game->x] != '1')
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE && \
+	game->map[game->y - 1][game->x] != '1')
 		new_y--;
-	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE && game->map[game->y + 1][game->x] != '1')
+	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE && \
+	game->map[game->y + 1][game->x] != '1')
 		new_y++;
-	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE && game->map[game->y][game->x - 1] != '1')
+	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE && \
+	game->map[game->y][game->x - 1] != '1')
 		new_x--;
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE && game->map[game->y][game->x + 1] != '1')
+	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE && \
+	game->map[game->y][game->x + 1] != '1')
 		new_x++;
 	if (new_x == game->x && new_y == game->y)
 		return ;

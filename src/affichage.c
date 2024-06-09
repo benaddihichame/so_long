@@ -27,51 +27,53 @@ void	display_background(t_game *game)
 	}
 }
 
-
-void display_image(t_game *game, int i, int j) 
+void	display_image(t_game *game, int i, int j)
 {
-    char c;
-	
+	char	c;
+
 	c = game->map[i][j];
 	if (game->x == j && game->y == i)
-        mlx_image_to_window(game->mlx, game->tab_png[3].img,\
-		 j * PIXEL, i * PIXEL);
-    else if (c == 'C')
-        mlx_image_to_window(game->mlx, game->tab_png[1].img, \
+		mlx_image_to_window(game->mlx, game->tab_png[3].img, \
 		j * PIXEL, i * PIXEL);
-    else if (c == '1')
-        mlx_image_to_window(game->mlx, game->tab_png[2].img, \
+	else if (c == 'C')
+		mlx_image_to_window(game->mlx, game->tab_png[1].img, \
 		j * PIXEL, i * PIXEL);
-    else if (c == 'E')
-        mlx_image_to_window(game->mlx, game->tab_png[4].img, \
+	else if (c == '1')
+		mlx_image_to_window(game->mlx, game->tab_png[2].img, \
 		j * PIXEL, i * PIXEL);
-    else if (c == 'T')
-        mlx_image_to_window(game->mlx, game->tab_png[5].img, \
+	else if (c == 'E')
+		mlx_image_to_window(game->mlx, game->tab_png[4].img, \
+		j * PIXEL, i * PIXEL);
+	else if (c == 'T')
+		mlx_image_to_window(game->mlx, game->tab_png[5].img, \
 		j * PIXEL, i * PIXEL);
 }
 
-void display_line(t_game *game, int i) 
+void	display_line(t_game *game, int i)
 {
-    int j = 0;
+	int	j;
 
-    while (game->map[i][j] != '\0')
-    {
-        display_image(game, i, j);
-        j++;
-    }
+	j = 0;
+	while (game->map[i][j] != '\0')
+	{
+		display_image(game, i, j);
+		j++;
+	}
 }
 
-void display(t_game *game)
+void	display(t_game *game)
 {
-    int i = 0;
+	int	i;
 
-    display_background(game);
-    while (game->map[i])
-    {
-        display_line(game, i);
-        i++;
-    }
+	i = 0;
+	display_background(game);
+	while (game->map[i])
+	{
+		display_line(game, i);
+		i++;
+	}
 }
+
 void	display_moove_count(t_game *game, int start)
 {
 	char	*move_str;

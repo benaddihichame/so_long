@@ -58,7 +58,6 @@ void	get_map(char *file_name, t_game *game)
 	game->map[i] = NULL;
 }
 
-
 void	copy_map(t_game *game)
 {
 	int	i;
