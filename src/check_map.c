@@ -6,7 +6,7 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:14:48 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/08 23:17:44 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:43:30 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	is_rectang(char **map)
 		return (FALSE);
 	while (map[i])
 	{
-		if (map[i + 1] != NULL && strlen(map[i]) != strlen(map[i + 1]))
+		if (map[i + 1] != NULL && ft_strlen(map[i]) \
+		!= ft_strlen(map[i + 1]))
 			return (FALSE);
 		i++;
 	}

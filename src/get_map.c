@@ -14,9 +14,9 @@
 
 int	count_line(char *file_name)
 {
+	char	*line;
 	int		fd;
 	int		i;
-	char	*line;
 
 	i = 0;
 	fd = open(file_name, O_RDONLY);
@@ -25,10 +25,12 @@ int	count_line(char *file_name)
 		perror("Error fd");
 		return (1);
 	}
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		i++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (i);
@@ -36,9 +38,9 @@ int	count_line(char *file_name)
 
 void	get_map(char *file_name, t_game *game)
 {
+	char	*line;
 	int		fd;
 	int		i;
-	char	*line;
 
 	i = 0;
 	game->map = malloc((count_line(file_name) + 1) * sizeof(char *));
@@ -48,11 +50,13 @@ void	get_map(char *file_name, t_game *game)
 		return ;
 	}
 	fd = open(file_name, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		line[ft_strlen(line) - 1] = 0;
 		game->map[i] = line;
 		i++;
+		line = get_next_line(fd);
 	}
 	close(fd);
 	game->map[i] = NULL;

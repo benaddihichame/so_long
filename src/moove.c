@@ -42,3 +42,28 @@ void	grab_pokeball(t_game *game, int x, int y)
 		x * PIXEL, y * PIXEL);
 	}
 }
+
+void	handle_escp(mlx_key_data_t keydata, t_game *game)
+{
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
+		close_and_free(game);
+}
+
+void	handle_movement_keys(t_game *game, mlx_key_data_t keydata, \
+int *new_x, int *new_y)
+{
+	if (keydata.action == MLX_RELEASE)
+	{
+		if (keydata.key == MLX_KEY_W && game->map[game->y - 1][game->x] != '1')
+			(*new_y)--;
+		else if (keydata.key == MLX_KEY_S && \
+		game->map[game->y + 1][game->x] != '1')
+			(*new_y)++;
+		else if (keydata.key == MLX_KEY_A && \
+		game->map[game->y][game->x - 1] != '1')
+			(*new_x)--;
+		else if (keydata.key == MLX_KEY_D && \
+		game->map[game->y][game->x + 1] != '1')
+			(*new_x)++;
+	}
+}

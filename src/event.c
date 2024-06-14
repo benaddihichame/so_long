@@ -6,13 +6,13 @@
 /*   By: hbenaddi <hbenaddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 23:12:17 by hbenaddi          #+#    #+#             */
-/*   Updated: 2024/06/08 23:16:58 by hbenaddi         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:05:49 by hbenaddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	close_and_free(t_game *game)
+void	close_and_free(t_game *game)
 {
 	free_img(game);
 	free_map(game->map);
@@ -69,20 +69,8 @@ void	event_listener(mlx_key_data_t keydata, void *param)
 	game = (t_game *)param;
 	new_y = game->y;
 	new_x = game->x;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
-		return (close_and_free(game));
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE && \
-	game->map[game->y - 1][game->x] != '1')
-		new_y--;
-	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE && \
-	game->map[game->y + 1][game->x] != '1')
-		new_y++;
-	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE && \
-	game->map[game->y][game->x - 1] != '1')
-		new_x--;
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE && \
-	game->map[game->y][game->x + 1] != '1')
-		new_x++;
+	handle_escp(keydata, game);
+	handle_movement_keys(game, keydata, &new_x, &new_y);
 	if (new_x == game->x && new_y == game->y)
 		return ;
 	update_player_position(game, game->x, game->y);
